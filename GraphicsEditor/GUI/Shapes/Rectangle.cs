@@ -5,16 +5,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shapes
+namespace GUI.Drawer
 {
     public class Rectangle:Shape
     {
         public int width,  height;
         public List<Point> points = new();
 
-        public override void Draw()
+        public override void Draw(ShapesDrawer sd)
         {
-
+            sd.DrawPolygon(points);
         }
 
         public override float CalculateSquare()

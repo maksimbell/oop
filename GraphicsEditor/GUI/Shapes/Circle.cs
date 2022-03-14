@@ -5,14 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shapes
+namespace GUI.Drawer
 {
     public class Circle:Shape
     {
         int radius;
-        public override void Draw()
+        public override void Draw(ShapesDrawer sd)
         {
-
+            sd.DrawEllipse(startPoint, radius, radius);
         }
         public override float CalculateSquare()
         {

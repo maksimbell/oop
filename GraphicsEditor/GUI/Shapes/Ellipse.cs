@@ -1,18 +1,13 @@
-﻿using System;
-using System.Drawing;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 
-namespace Shapes
+namespace GUI.Drawer
 {
     public class Ellipse:Shape
     {
         int a, b;
-        public override void Draw()
+        public override void Draw(ShapesDrawer sd)
         {
-
+            sd.DrawEllipse(startPoint, a, b);
         }
         public override float CalculateSquare()
         {

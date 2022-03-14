@@ -1,13 +1,13 @@
 ﻿using System.Drawing;
 
-namespace Shapes
+namespace GUI.Drawer
 {
     public class Line:Shape
     {
         public Point endPoint;
-        public override void Draw()
+        public override void Draw(ShapesDrawer sd)
         {
-                
+            sd.DrawLine(startPoint, endPoint);
         }
         public override float CalculateSquare()
         {

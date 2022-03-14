@@ -5,27 +5,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shapes
+namespace GUI.Drawer
 {
-    public class Triangle: Shape
+    public class Square:Shape
     {
-
+        public int width;
         public List<Point> points = new();
-        public override void Draw()
+        public override void Draw(ShapesDrawer sd)
         {
-
+            sd.DrawPolygon(points);
         }
-
         public override float CalculateSquare()
         {
-            return 0;
+            return width * width;
         }
 
-        public Triangle(List<Point> points)
+        public Square(List<Point> points)
         {
-            if (points.Count != 3)
+            if (points.Count != 4)
             {
-                throw new Exception("3 points expected.");
+                throw new Exception("4 points expected.");
             }
 
             this.points = points;

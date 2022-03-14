@@ -1,11 +1,12 @@
 ﻿using System.Drawing;
 
-namespace Shapes
+
+namespace GUI.Drawer
 {
     public abstract class Shape
     {
         public Point startPoint;
-        public abstract void Draw();
+        public abstract void Draw(ShapesDrawer sd);
         public abstract float CalculateSquare();
     }
 }
