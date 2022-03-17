@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GUI.Drawer
 {
-    public class Rectangle:Shape
+    public class Rect:Shape
     {
         public int width,  height;
         public List<Point> points = new();
@@ -22,7 +22,7 @@ namespace GUI.Drawer
             return width * height;
         }
 
-        public Rectangle(List<Point> points)
+        public Rect(List<Point> points)
         {
             if (points.Count != 4)
             {

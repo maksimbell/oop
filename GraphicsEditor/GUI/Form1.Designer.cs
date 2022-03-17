@@ -29,34 +29,67 @@
         private void InitializeComponent()
         {
             this.canvas = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnDraw = new System.Windows.Forms.Button();
+            this.btnClear = new System.Windows.Forms.Button();
+            this.cbShapesType = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.canvas)).BeginInit();
             this.SuspendLayout();
             // 
             // canvas
             // 
+            this.canvas.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.canvas.Location = new System.Drawing.Point(208, 12);
             this.canvas.Name = "canvas";
             this.canvas.Size = new System.Drawing.Size(580, 426);
             this.canvas.TabIndex = 0;
             this.canvas.TabStop = false;
+            this.canvas.Click += new System.EventHandler(this.canvas_Click);
+            this.canvas.MouseDown += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseDown);
+            this.canvas.MouseMove += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseMove);
             // 
-            // button1
+            // btnDraw
             // 
-            this.button1.Location = new System.Drawing.Point(32, 81);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(94, 29);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Draw";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnDraw.Location = new System.Drawing.Point(8, 409);
+            this.btnDraw.Name = "btnDraw";
+            this.btnDraw.Size = new System.Drawing.Size(94, 29);
+            this.btnDraw.TabIndex = 1;
+            this.btnDraw.Text = "Draw";
+            this.btnDraw.UseVisualStyleBackColor = true;
+            this.btnDraw.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btnClear
+            // 
+            this.btnClear.Location = new System.Drawing.Point(108, 409);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(94, 29);
+            this.btnClear.TabIndex = 2;
+            this.btnClear.Text = "Clear";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // cbShapesType
+            // 
+            this.cbShapesType.FormattingEnabled = true;
+            this.cbShapesType.Items.AddRange(new object[] {
+            "Line",
+            "Square",
+            "Rectangle",
+            "Triangle",
+            "Circle",
+            "Ellipse"});
+            this.cbShapesType.Location = new System.Drawing.Point(8, 12);
+            this.cbShapesType.Name = "cbShapesType";
+            this.cbShapesType.Size = new System.Drawing.Size(194, 28);
+            this.cbShapesType.TabIndex = 3;
             // 
             // GraphicsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.cbShapesType);
+            this.Controls.Add(this.btnClear);
+            this.Controls.Add(this.btnDraw);
             this.Controls.Add(this.canvas);
             this.Name = "GraphicsForm";
             this.Text = "graphics";
@@ -69,6 +102,8 @@
         #endregion
 
         private PictureBox canvas;
-        private Button button1;
+        private Button btnDraw;
+        private Button btnClear;
+        private ComboBox cbShapesType;
     }
 }

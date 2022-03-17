@@ -3,10 +3,14 @@
 
 namespace GUI.Drawer
 {
-    public abstract class Shape: IDrawable
+    public abstract class Shape: IDrawable, IResizeable
     {
         public Point startPoint;
+
         public abstract void Draw(ShapesDrawer sd);
+
+        public abstract void Resize(Point rp);
+
         public abstract float CalculateSquare();
     }
 }
