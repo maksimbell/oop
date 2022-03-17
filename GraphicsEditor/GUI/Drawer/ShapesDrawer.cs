@@ -4,7 +4,9 @@
     {
         
         private Graphics graphics;
+
         private Pen pen;
+        
         private Brush brush;
 
         public ShapesDrawer(Graphics graphics)

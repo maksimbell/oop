@@ -35,9 +35,9 @@
             // 
             // canvas
             // 
-            this.canvas.Location = new System.Drawing.Point(331, 81);
+            this.canvas.Location = new System.Drawing.Point(208, 12);
             this.canvas.Name = "canvas";
-            this.canvas.Size = new System.Drawing.Size(420, 280);
+            this.canvas.Size = new System.Drawing.Size(580, 426);
             this.canvas.TabIndex = 0;
             this.canvas.TabStop = false;
             // 

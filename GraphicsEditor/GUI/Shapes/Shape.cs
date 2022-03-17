@@ -3,7 +3,7 @@
 
 namespace GUI.Drawer
 {
-    public abstract class Shape
+    public abstract class Shape: IDrawable
     {
         public Point startPoint;
         public abstract void Draw(ShapesDrawer sd);
