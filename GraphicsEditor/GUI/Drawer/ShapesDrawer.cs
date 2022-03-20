@@ -31,7 +31,5 @@
             graphics.FillEllipse(brush, start.X, start.Y, a, b);
         }
 
-
-
     }
 }

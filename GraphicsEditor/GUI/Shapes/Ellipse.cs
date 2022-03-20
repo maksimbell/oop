@@ -25,7 +25,9 @@ namespace GUI.Drawer
 
         public override void Resize(Point rp)
         {
-
+            a = ShapeCalculator.GetXDistance(rp, startPoint);
+            b = ShapeCalculator.GetYDistance(rp, startPoint);
+           
         }
     }
 }

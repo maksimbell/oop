@@ -35,9 +35,10 @@ namespace GUI.Drawer
         public override void Resize(Point rp)
         {
 
-            points[3] = rp;
-            points[1] = new Point(rp.X - points[0].X, rp.Y - points[0].Y);
-            
+            points[1] = new Point(points[0].X + ShapeCalculator.GetXDistance(rp, points[0]), points[0].Y);
+            points[3] = new Point(points[0].X, points[0].Y + ShapeCalculator.GetXDistance(rp, points[0]));
+            points[2] = new Point(points[0].X + ShapeCalculator.GetXDistance(rp, points[0]), points[0].Y + ShapeCalculator.GetXDistance(rp, points[0]));
+
         }
     }
 }

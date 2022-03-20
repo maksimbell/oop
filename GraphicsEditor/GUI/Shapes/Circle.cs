@@ -29,8 +29,11 @@ namespace GUI.Drawer
 
         public override void Resize(Point rp)
         {
-            radius = (int)Math.Sqrt((rp.X - startPoint.X) * (rp.X - startPoint.X) +
-                (rp.Y - startPoint.Y) * (rp.Y - startPoint.Y));
+            /*int x = ShapeCalculator.GetXDistance(startPoint, rp);
+            int y = ShapeCalculator.GetYDistance(startPoint, rp);
+            radius = (int)Math.Sqrt(x*x+y*y);*/
+
+            radius = ShapeCalculator.GetXDistance(rp, startPoint);
         }
     }
 }

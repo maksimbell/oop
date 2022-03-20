@@ -34,7 +34,9 @@ namespace GUI.Drawer
 
         public override void Resize(Point rp)
         {
-
+            points[1] = new Point(rp.X, points[0].Y);
+            points[3] = new Point(points[0].X, rp.Y);
+            points[2] = rp;
         }
 
     }
