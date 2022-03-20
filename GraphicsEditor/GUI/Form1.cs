@@ -5,11 +5,13 @@ namespace GUI
     public partial class GraphicsForm : Form
     {
 
-        private List<Shape> staticShapes = new List<Shape>();
+        private List<Shape> staticShapes;
 
-        private List<Shape> shapes;
+        private List<Shape> shapes = new List<Shape>();
 
-        private Shape currentShape;
+        private Shape currentShape = null;
+
+        private ShapeCreator shapeCreator = new ShapeCreator();
 
         //private ShapeType currentShapeType;
         
@@ -48,9 +50,17 @@ namespace GUI
             };
         }
 
+        private void DrawShapesCanvas()
+        {
+            foreach (Shape shape in shapes)
+            {
+                shape.Draw(sd);
+            }
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
-           foreach (var shape in staticShapes)
+            foreach (var shape in staticShapes)
             {
                 shape.Draw(sd);
             }
@@ -63,7 +73,7 @@ namespace GUI
 
         private void canvas_MouseDown(object sender, MouseEventArgs e)
         {
-
+            currentShape = shapeCreator.CreateShape(cbShapesType.Text, new Point(e.X, e.Y));
         }
 
         private void canvas_Click(object sender, EventArgs e)
@@ -73,7 +83,26 @@ namespace GUI
 
         private void canvas_MouseMove(object sender, MouseEventArgs e)
         {
+            if (e.Button == MouseButtons.Left)
+            {
+                
+                currentShape.Resize(new Point(e.X, e.Y));
+                Refresh();
+                currentShape.Draw(sd);
+                DrawShapesCanvas();
+            }
+        }
 
+        private void canvas_Move(object sender, EventArgs e)
+        {
+
+        }
+
+        private void canvas_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (currentShape != null) shapes.Add(this.currentShape);
+
+            currentShape = null;
         }
     }
 }

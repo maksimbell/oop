@@ -46,6 +46,8 @@
             this.canvas.Click += new System.EventHandler(this.canvas_Click);
             this.canvas.MouseDown += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseDown);
             this.canvas.MouseMove += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseMove);
+            this.canvas.MouseUp += new System.Windows.Forms.MouseEventHandler(this.canvas_MouseUp);
+            this.canvas.Move += new System.EventHandler(this.canvas_Move);
             // 
             // btnDraw
             // 

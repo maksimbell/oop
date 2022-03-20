@@ -11,15 +11,6 @@ namespace GUI.Drawer
     {
 
         public List<Point> points = new();
-        public override void Draw(ShapesDrawer sd)
-        {
-            sd.DrawPolygon(points);
-        }
-
-        public override float CalculateSquare()
-        {
-            return 0;
-        }
 
         public Triangle(List<Point> points)
         {
@@ -29,6 +20,21 @@ namespace GUI.Drawer
             }
 
             this.points = points;
+        }
+
+        public override float CalculateSquare()
+        {
+            return 0;
+        }
+
+        public override void Draw(ShapesDrawer sd)
+        {
+            sd.DrawPolygon(points);
+        }
+
+        public override void Resize(Point rp)
+        {
+
         }
     }
 }

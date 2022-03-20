@@ -7,10 +7,10 @@ namespace GUI.Drawer
     {
         public Point startPoint;
 
+        public abstract float CalculateSquare();
+
         public abstract void Draw(ShapesDrawer sd);
 
         public abstract void Resize(Point rp);
-
-        public abstract float CalculateSquare();
     }
 }

@@ -11,15 +11,7 @@ namespace GUI.Drawer
     {
         public int width;
         public List<Point> points = new();
-        public override void Draw(ShapesDrawer sd)
-        {
-            sd.DrawPolygon(points);
-        }
-        public override float CalculateSquare()
-        {
-            return width * width;
-        }
-
+        
         public Square(List<Point> points)
         {
             if (points.Count != 4)
@@ -28,6 +20,24 @@ namespace GUI.Drawer
             }
 
             this.points = points;
+        }
+
+        public override float CalculateSquare()
+        {
+            return width * width;
+        }
+
+        public override void Draw(ShapesDrawer sd)
+        {
+            sd.DrawPolygon(points);
+        }
+
+        public override void Resize(Point rp)
+        {
+
+            points[3] = rp;
+            points[1] = new Point(rp.X - points[0].X, rp.Y - points[0].Y);
+            
         }
     }
 }
