@@ -33,6 +33,8 @@
             this.btnClear = new System.Windows.Forms.Button();
             this.cbShapesType = new System.Windows.Forms.ComboBox();
             this.lbShapes = new System.Windows.Forms.ListBox();
+            this.btnColorChange = new System.Windows.Forms.Button();
+            this.shapesColorDialog = new System.Windows.Forms.ColorDialog();
             ((System.ComponentModel.ISupportInitialize)(this.canvas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -94,11 +96,24 @@
             this.lbShapes.Size = new System.Drawing.Size(194, 104);
             this.lbShapes.TabIndex = 4;
             // 
+            // btnColorChange
+            // 
+            this.btnColorChange.BackColor = System.Drawing.Color.Green;
+            this.btnColorChange.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnColorChange.ForeColor = System.Drawing.Color.Transparent;
+            this.btnColorChange.Location = new System.Drawing.Point(8, 168);
+            this.btnColorChange.Name = "btnColorChange";
+            this.btnColorChange.Size = new System.Drawing.Size(194, 29);
+            this.btnColorChange.TabIndex = 5;
+            this.btnColorChange.UseVisualStyleBackColor = false;
+            this.btnColorChange.Click += new System.EventHandler(this.btnColorChange_Click);
+            // 
             // GraphicsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnColorChange);
             this.Controls.Add(this.lbShapes);
             this.Controls.Add(this.cbShapesType);
             this.Controls.Add(this.btnClear);
@@ -119,5 +134,7 @@
         private Button btnClear;
         private ComboBox cbShapesType;
         private ListBox lbShapes;
+        private Button btnColorChange;
+        private ColorDialog shapesColorDialog;
     }
 }

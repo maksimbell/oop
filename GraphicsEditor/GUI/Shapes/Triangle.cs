@@ -19,6 +19,7 @@ namespace GUI.Drawer
                 throw new Exception("3 points expected.");
             }
 
+            Pen = new Pen(Color.Black);
             this.points = points;
         }
 
@@ -29,7 +30,7 @@ namespace GUI.Drawer
 
         public override void Draw(ShapesDrawer sd)
         {
-            sd.DrawPolygon(points);
+            sd.DrawPolygon(points, Pen);
         }
 
         public override void Resize(Point rp)

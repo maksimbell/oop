@@ -13,7 +13,7 @@ namespace GUI.Drawer
 
         }
         
-        public Shape CreateShape(string type, Point start)
+        public Shape CreateShape(string type, Point start, Pen pen)
         {
 
            /* Line
@@ -26,7 +26,7 @@ namespace GUI.Drawer
             switch (type)
             {
                 case "Line":
-                    return new Line(start, start);
+                    return new Line(start, start, pen);
                 case "Square":
                     return new Square(new List<Point> { start, start, start, start });
                 case "Rectangle":

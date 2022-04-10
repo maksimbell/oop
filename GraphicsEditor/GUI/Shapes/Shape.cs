@@ -5,7 +5,21 @@ namespace GUI.Drawer
 {
     public abstract class Shape: IDrawable, IResizeable
     {
-        public Point startPoint;
+        private Point startPoint;
+
+        private Pen pen;
+
+        public Point StartPoint
+        {
+            get { return startPoint; } 
+            set { startPoint = value; }
+        }
+
+        public Pen Pen
+        {
+            get { return pen; } 
+            set { pen = value; }
+        }
 
         public abstract float CalculateSquare();
 

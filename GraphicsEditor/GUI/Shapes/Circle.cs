@@ -13,8 +13,9 @@ namespace GUI.Drawer
        
         public Circle(Point center, int radius)
         {
-            this.startPoint = center;
-            this.radius = radius;
+            this.StartPoint = center;
+            this.radius = radius; 
+            Pen = new Pen(Color.Black);
         }
 
         public override float CalculateSquare()
@@ -24,7 +25,7 @@ namespace GUI.Drawer
 
         public override void Draw(ShapesDrawer sd)
         {
-            sd.DrawEllipse(startPoint, radius, radius);
+            sd.DrawEllipse(StartPoint, radius, radius, Pen);
         }
 
         public override void Resize(Point rp)
@@ -33,7 +34,7 @@ namespace GUI.Drawer
             int y = ShapeCalculator.GetYDistance(startPoint, rp);
             radius = (int)Math.Sqrt(x*x+y*y);*/
 
-            radius = ShapeCalculator.GetXDistance(rp, startPoint);
+            radius = ShapeCalculator.GetXDistance(rp, StartPoint);
         }
     }
 }

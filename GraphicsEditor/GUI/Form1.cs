@@ -17,6 +17,8 @@ namespace GUI
 
         private ShapesDrawer sd;
 
+        private Pen canvasPen = new Pen(Color.Black);
+
         public GraphicsForm()
         {
             InitializeComponent();
@@ -36,8 +38,8 @@ namespace GUI
         private void InitializeStaticShapes()
         {
             staticShapes = new List<Shape>
-            {
-                new Line(new Point(100, 50), new Point(500, 50)),
+            {/*
+                new Line(new Point(100, 50), new Point(500, 50)),*/
                 new Triangle(new List<Point>() { new Point(100, 100),
                     new Point(50, 200), new Point(150, 200) }),
                 new Circle(new Point(200, 150), 50),
@@ -76,7 +78,9 @@ namespace GUI
 
         private void canvas_MouseDown(object sender, MouseEventArgs e)
         {
-            currentShape = shapeCreator.CreateShape(cbShapesType.Text, new Point(e.X, e.Y));
+            canvasPen.Width = 6;
+            canvasPen.Color = shapesColorDialog.Color;
+            currentShape = shapeCreator.CreateShape(cbShapesType.Text, new Point(e.X, e.Y), canvasPen);
         }
 
         private void canvas_Click(object sender, EventArgs e)
@@ -107,6 +111,14 @@ namespace GUI
 
             currentShape = null;
 
+        }
+
+        private void btnColorChange_Click(object sender, EventArgs e)
+        {
+            if (shapesColorDialog.ShowDialog() == DialogResult.Cancel)
+                return;
+
+            btnColorChange.BackColor = shapesColorDialog.Color;
         }
     }
 }
