@@ -14,7 +14,7 @@ namespace GUI
         private ShapeCreator shapeCreator = new ShapeCreator();
 
         //private ShapeType currentShapeType;
-        
+
         private ShapesDrawer sd;
 
         public GraphicsForm()
@@ -69,6 +69,9 @@ namespace GUI
         private void button1_Click_1(object sender, EventArgs e)
         {
             canvas.Image = null;
+
+            lbShapes.Items.Clear();
+            shapes.Clear();
         }
 
         private void canvas_MouseDown(object sender, MouseEventArgs e)
@@ -85,7 +88,6 @@ namespace GUI
         {
             if (e.Button == MouseButtons.Left)
             {
-                
                 currentShape.Resize(new Point(e.X, e.Y));
                 Refresh();
                 currentShape.Draw(sd);
@@ -101,8 +103,10 @@ namespace GUI
         private void canvas_MouseUp(object sender, MouseEventArgs e)
         {
             if (currentShape != null) shapes.Add(this.currentShape);
+            lbShapes.Items.Add(currentShape.ToString().Replace("GUI.Drawer.","")) ;
 
             currentShape = null;
+
         }
     }
 }

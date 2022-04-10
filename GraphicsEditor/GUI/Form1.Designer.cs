@@ -32,6 +32,7 @@
             this.btnDraw = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.cbShapesType = new System.Windows.Forms.ComboBox();
+            this.lbShapes = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.canvas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -84,11 +85,21 @@
             this.cbShapesType.Size = new System.Drawing.Size(194, 28);
             this.cbShapesType.TabIndex = 3;
             // 
+            // lbShapes
+            // 
+            this.lbShapes.FormattingEnabled = true;
+            this.lbShapes.ItemHeight = 20;
+            this.lbShapes.Location = new System.Drawing.Point(8, 46);
+            this.lbShapes.Name = "lbShapes";
+            this.lbShapes.Size = new System.Drawing.Size(194, 104);
+            this.lbShapes.TabIndex = 4;
+            // 
             // GraphicsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lbShapes);
             this.Controls.Add(this.cbShapesType);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnDraw);
@@ -107,5 +118,6 @@
         private Button btnDraw;
         private Button btnClear;
         private ComboBox cbShapesType;
+        private ListBox lbShapes;
     }
 }

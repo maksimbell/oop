@@ -9,6 +9,18 @@
         
         private Brush brush;
 
+        public Pen Pen
+        {
+            get { return pen; }
+            set { pen = value; }
+        }
+
+        public Brush Brush
+        {
+            get { return brush; }
+            set { brush = value; }
+        }
+
         public ShapesDrawer(Graphics graphics)
         {
             this.graphics = graphics;
@@ -18,17 +30,17 @@
 
         public void DrawLine(Point start, Point end)
         {
-            graphics.DrawLine(pen, start, end);
+            graphics.DrawLine(pen, start, end); 
         }
 
         public void DrawPolygon(List<Point> points)
         {
-            graphics.FillPolygon(brush, points.ToArray());
+            graphics.DrawPolygon(pen, points.ToArray());
         }
 
         public void DrawEllipse(Point start, int a, int b)
         {
-            graphics.FillEllipse(brush, start.X, start.Y, a, b);
+            graphics.DrawEllipse(pen, start.X, start.Y, a, b);
         }
 
     }
