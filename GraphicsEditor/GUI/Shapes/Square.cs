@@ -12,14 +12,14 @@ namespace GUI.Drawer
         public int width;
         public List<Point> points = new();
         
-        public Square(List<Point> points)
+        public Square(List<Point> points, Pen pen)
         {
             if (points.Count != 4)
             {
                 throw new Exception("4 points expected.");
             }
 
-            Pen = new Pen(Color.Black);
+            Pen = (Pen)pen.Clone();
             this.points = points;
         }
 
@@ -30,7 +30,7 @@ namespace GUI.Drawer
 
         public override void Draw(ShapesDrawer sd)
         {
-            sd.DrawPolygon(points, Pen);
+            sd.DrawPolygon(Pen, points);
         }
 
         public override void Resize(Point rp)

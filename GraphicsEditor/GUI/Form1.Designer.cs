@@ -35,12 +35,18 @@
             this.lbShapes = new System.Windows.Forms.ListBox();
             this.btnColorChange = new System.Windows.Forms.Button();
             this.shapesColorDialog = new System.Windows.Forms.ColorDialog();
+            this.tbWidth = new System.Windows.Forms.TrackBar();
+            this.lblColor = new System.Windows.Forms.Label();
+            this.lblWidth = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.canvas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbWidth)).BeginInit();
             this.SuspendLayout();
             // 
             // canvas
             // 
+            this.canvas.AccessibleRole = System.Windows.Forms.AccessibleRole.Graphic;
             this.canvas.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.canvas.ImageLocation = "";
             this.canvas.Location = new System.Drawing.Point(208, 12);
             this.canvas.Name = "canvas";
             this.canvas.Size = new System.Drawing.Size(580, 426);
@@ -98,32 +104,65 @@
             // 
             // btnColorChange
             // 
-            this.btnColorChange.BackColor = System.Drawing.Color.Green;
+            this.btnColorChange.BackColor = System.Drawing.Color.RosyBrown;
             this.btnColorChange.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnColorChange.ForeColor = System.Drawing.Color.Transparent;
-            this.btnColorChange.Location = new System.Drawing.Point(8, 168);
+            this.btnColorChange.Location = new System.Drawing.Point(95, 169);
             this.btnColorChange.Name = "btnColorChange";
-            this.btnColorChange.Size = new System.Drawing.Size(194, 29);
+            this.btnColorChange.Size = new System.Drawing.Size(89, 29);
             this.btnColorChange.TabIndex = 5;
             this.btnColorChange.UseVisualStyleBackColor = false;
             this.btnColorChange.Click += new System.EventHandler(this.btnColorChange_Click);
+            // 
+            // tbWidth
+            // 
+            this.tbWidth.Location = new System.Drawing.Point(83, 227);
+            this.tbWidth.Name = "tbWidth";
+            this.tbWidth.Size = new System.Drawing.Size(101, 56);
+            this.tbWidth.TabIndex = 6;
+            this.tbWidth.Value = 4;
+            // 
+            // lblColor
+            // 
+            this.lblColor.AutoSize = true;
+            this.lblColor.Location = new System.Drawing.Point(25, 178);
+            this.lblColor.Name = "lblColor";
+            this.lblColor.Size = new System.Drawing.Size(48, 20);
+            this.lblColor.TabIndex = 7;
+            this.lblColor.Text = "Color:";
+            // 
+            // lblWidth
+            // 
+            this.lblWidth.AutoSize = true;
+            this.lblWidth.Location = new System.Drawing.Point(25, 237);
+            this.lblWidth.Name = "lblWidth";
+            this.lblWidth.Size = new System.Drawing.Size(52, 20);
+            this.lblWidth.TabIndex = 8;
+            this.lblWidth.Text = "Width:";
             // 
             // GraphicsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lblWidth);
+            this.Controls.Add(this.lblColor);
+            this.Controls.Add(this.tbWidth);
             this.Controls.Add(this.btnColorChange);
             this.Controls.Add(this.lbShapes);
             this.Controls.Add(this.cbShapesType);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnDraw);
             this.Controls.Add(this.canvas);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "GraphicsForm";
             this.Text = "graphics";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.canvas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbWidth)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -136,5 +175,8 @@
         private ListBox lbShapes;
         private Button btnColorChange;
         private ColorDialog shapesColorDialog;
+        private TrackBar tbWidth;
+        private Label lblColor;
+        private Label lblWidth;
     }
 }

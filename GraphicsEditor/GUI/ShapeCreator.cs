@@ -28,15 +28,15 @@ namespace GUI.Drawer
                 case "Line":
                     return new Line(start, start, pen);
                 case "Square":
-                    return new Square(new List<Point> { start, start, start, start });
+                    return new Square(new List<Point> { start, start, start, start }, pen);
                 case "Rectangle":
-                    return new Rect(new List<Point> { start, start, start, start });
+                    return new Rect(new List<Point> { start, start, start, start }, pen);
                 case "Triangle":
-                    return new Triangle(new List<Point> { start, start, start});
+                    return new Triangle(new List<Point> { start, start, start}, pen);
                 case "Circle":
-                    return new Circle(start, 0);
+                    return new Circle(start, 0, pen);
                 case "Ellipse":
-                    return new Ellipse(start, 0, 0);
+                    return new Ellipse(start, 0, 0, pen);
                 default:
                     return null;
             }

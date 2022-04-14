@@ -11,11 +11,13 @@ namespace GUI.Drawer
     {
         int radius;
        
-        public Circle(Point center, int radius)
+        public Circle(Point center, int radius, Pen pen)
         {
             this.StartPoint = center;
-            this.radius = radius; 
-            Pen = new Pen(Color.Black);
+            this.radius = radius;
+            Pen = (Pen)pen.Clone();
+            /*Pen.Color = pen.Color;*/
+
         }
 
         public override float CalculateSquare()
@@ -25,7 +27,7 @@ namespace GUI.Drawer
 
         public override void Draw(ShapesDrawer sd)
         {
-            sd.DrawEllipse(StartPoint, radius, radius, Pen);
+            sd.DrawEllipse(Pen, StartPoint, radius, radius);
         }
 
         public override void Resize(Point rp)

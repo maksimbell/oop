@@ -10,7 +10,7 @@ namespace GUI.Drawer
         {
             this.StartPoint = start;
             this.endPoint = end;
-            Pen.Color = pen.Color;
+            Pen = (Pen)pen.Clone();
         }
 
         public override float CalculateSquare()
@@ -20,7 +20,7 @@ namespace GUI.Drawer
 
         public override void Draw(ShapesDrawer sd)
         {
-            sd.DrawLine(StartPoint, endPoint, Pen);
+            sd.DrawLine(Pen, StartPoint, endPoint);
         }
 
         public override void Resize(Point rp)

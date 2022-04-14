@@ -7,7 +7,7 @@ namespace GUI.Drawer
     {
         private Point startPoint;
 
-        private Pen pen;
+        private Pen pen = new Pen(Color.Bisque);
 
         public Point StartPoint
         {

@@ -38,16 +38,16 @@ namespace GUI
         private void InitializeStaticShapes()
         {
             staticShapes = new List<Shape>
-            {/*
-                new Line(new Point(100, 50), new Point(500, 50)),*/
+            {
+                new Line(new Point(100, 50), new Point(500, 50), canvasPen),
                 new Triangle(new List<Point>() { new Point(100, 100),
-                    new Point(50, 200), new Point(150, 200) }),
-                new Circle(new Point(200, 150), 50),
-                new Ellipse(new Point(300, 150), 90, 60),
+                    new Point(50, 200), new Point(150, 200) }, canvasPen),
+                new Circle(new Point(200, 150), 50, canvasPen),
+                new Ellipse(new Point(300, 150), 90, 60, canvasPen),
                 new Rect(new List<Point>() { new Point(100, 250),
-                    new Point(100, 350), new Point(150, 350), new Point(150, 250) }),
+                    new Point(100, 350), new Point(150, 350), new Point(150, 250) }, canvasPen),
                 new Square(new List<Point>() { new Point(300, 250),
-                    new Point(350, 250), new Point(350, 300), new Point(300, 300) })
+                    new Point(350, 250), new Point(350, 300), new Point(300, 300) }, canvasPen)
 
             };
         }
@@ -78,7 +78,7 @@ namespace GUI
 
         private void canvas_MouseDown(object sender, MouseEventArgs e)
         {
-            canvasPen.Width = 6;
+            canvasPen.Width = tbWidth.Value;
             canvasPen.Color = shapesColorDialog.Color;
             currentShape = shapeCreator.CreateShape(cbShapesType.Text, new Point(e.X, e.Y), canvasPen);
         }
@@ -94,8 +94,8 @@ namespace GUI
             {
                 currentShape.Resize(new Point(e.X, e.Y));
                 Refresh();
-                currentShape.Draw(sd);
                 DrawShapesCanvas();
+                currentShape.Draw(sd);
             }
         }
 
@@ -120,5 +120,6 @@ namespace GUI
 
             btnColorChange.BackColor = shapesColorDialog.Color;
         }
+
     }
 }

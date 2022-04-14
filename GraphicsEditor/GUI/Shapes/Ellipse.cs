@@ -6,12 +6,12 @@ namespace GUI.Drawer
     {
         int a, b;
 
-        public Ellipse(Point center, int a, int b)
+        public Ellipse(Point center, int a, int b, Pen pen)
         {
             this.StartPoint = center;
             this.a = a;
             this.b = b;
-            Pen = new Pen(Color.Black);
+            Pen = (Pen)pen.Clone();
         }
 
         public override float CalculateSquare()
@@ -21,7 +21,7 @@ namespace GUI.Drawer
 
         public override void Draw(ShapesDrawer sd)
         {
-            sd.DrawEllipse(StartPoint, a, b, Pen);
+            sd.DrawEllipse(Pen, StartPoint, a, b);
         }
 
         public override void Resize(Point rp)
