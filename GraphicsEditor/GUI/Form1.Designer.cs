@@ -99,12 +99,14 @@
             this.lbShapes.ItemHeight = 20;
             this.lbShapes.Location = new System.Drawing.Point(8, 46);
             this.lbShapes.Name = "lbShapes";
+            this.lbShapes.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lbShapes.Size = new System.Drawing.Size(194, 104);
             this.lbShapes.TabIndex = 4;
+            this.lbShapes.SelectedIndexChanged += new System.EventHandler(this.lbShapes_SelectedIndexChanged);
             // 
             // btnColorChange
             // 
-            this.btnColorChange.BackColor = System.Drawing.Color.RosyBrown;
+            this.btnColorChange.BackColor = System.Drawing.Color.Black;
             this.btnColorChange.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnColorChange.ForeColor = System.Drawing.Color.Transparent;
             this.btnColorChange.Location = new System.Drawing.Point(95, 169);
@@ -120,7 +122,7 @@
             this.tbWidth.Name = "tbWidth";
             this.tbWidth.Size = new System.Drawing.Size(101, 56);
             this.tbWidth.TabIndex = 6;
-            this.tbWidth.Value = 4;
+            this.tbWidth.Scroll += new System.EventHandler(this.tbWidth_Scroll);
             // 
             // lblColor
             // 

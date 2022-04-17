@@ -19,6 +19,8 @@ namespace GUI
 
         private Pen canvasPen = new Pen(Color.Black);
 
+        private List<int> selectedShapes = new List<int>();
+
         public GraphicsForm()
         {
             InitializeComponent();
@@ -60,6 +62,21 @@ namespace GUI
             }
         }
 
+        private void ChangeSelectedShapes()
+        {
+            foreach (int index in selectedShapes)
+            {
+                shapes[index].Pen = (Pen)canvasPen.Clone();
+                shapes[index].Pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+            }
+        }
+
+        private void UpdatePen()
+        {
+            canvasPen.Width = tbWidth.Value;
+            canvasPen.Color = shapesColorDialog.Color;
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             foreach (var shape in staticShapes)
@@ -74,12 +91,11 @@ namespace GUI
 
             lbShapes.Items.Clear();
             shapes.Clear();
+            selectedShapes.Clear();
         }
 
         private void canvas_MouseDown(object sender, MouseEventArgs e)
         {
-            canvasPen.Width = tbWidth.Value;
-            canvasPen.Color = shapesColorDialog.Color;
             currentShape = shapeCreator.CreateShape(cbShapesType.Text, new Point(e.X, e.Y), canvasPen);
         }
 
@@ -119,7 +135,40 @@ namespace GUI
                 return;
 
             btnColorChange.BackColor = shapesColorDialog.Color;
+
+            UpdatePen();
+            ChangeSelectedShapes();
+
+            Refresh();
+            DrawShapesCanvas();
         }
 
+        private void lbShapes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            selectedShapes.Clear();
+            for(int i = 0; i < lbShapes.SelectedIndices.Count; i++)
+            {
+                selectedShapes.Add(lbShapes.SelectedIndices[i]);
+            }
+
+            for (int i = 0; i < shapes.Count; i++)
+            {
+                shapes[i].Pen.DashStyle = selectedShapes.IndexOf(i) > -1 ? 
+                    System.Drawing.Drawing2D.DashStyle.Dash :
+                    System.Drawing.Drawing2D.DashStyle.Solid;
+            }
+
+            Refresh();
+            DrawShapesCanvas();
+        }
+
+        private void tbWidth_Scroll(object sender, EventArgs e)
+        {
+            UpdatePen();
+            ChangeSelectedShapes();
+
+            Refresh();
+            DrawShapesCanvas();
+        }
     }
 }
