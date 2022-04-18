@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace GUI.Drawer
 {
+    [Serializable]
     public class Circle:Shape
     {
         int radius;

@@ -2,6 +2,7 @@
 
 namespace GUI.Drawer
 {
+    [Serializable]
     public class Ellipse:Shape
     {
         int a, b;

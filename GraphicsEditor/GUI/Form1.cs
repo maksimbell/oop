@@ -1,4 +1,5 @@
 using GUI.Drawer;
+using GUI.Serializer;
 
 namespace GUI
 {
@@ -21,6 +22,8 @@ namespace GUI
 
         private List<int> selectedShapes = new List<int>();
 
+        private CustomBinarySerializer<Shape> serializer;
+
         public GraphicsForm()
         {
             InitializeComponent();
@@ -28,6 +31,7 @@ namespace GUI
 
             Graphics graphics = canvas.CreateGraphics();
             sd = new ShapesDrawer(graphics);
+            serializer = new CustomBinarySerializer<Shape>();
 
             cbShapesType.SelectedIndex = 0;
         }
@@ -87,10 +91,22 @@ namespace GUI
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            canvas.Image = null;
+            if (selectedShapes.Count > 0)
+            {
+                for(int i = selectedShapes.Count - 1; i > -1; i--)
+                {
+                    shapes.RemoveAt(selectedShapes[i]);
+                    lbShapes.Items.RemoveAt(selectedShapes[i]);
+                }
+            }
+            else
+            {
+                lbShapes.Items.Clear();
+                shapes.Clear();
+            }
 
-            lbShapes.Items.Clear();
-            shapes.Clear();
+            Refresh();
+            DrawShapesCanvas();
             selectedShapes.Clear();
         }
 
@@ -169,6 +185,24 @@ namespace GUI
 
             Refresh();
             DrawShapesCanvas();
+        }
+
+        private void button1_Click_2(object sender, EventArgs e)
+        {
+            if (openFileDialog.ShowDialog() == DialogResult.Cancel)
+                return;
+            string filename = openFileDialog.FileName;
+
+            serializer.Serialize(shapes[0], filename);
+        }
+
+        private void btnLoad_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog.ShowDialog() == DialogResult.Cancel)
+                return;
+            string filename = openFileDialog.FileName;
+
+            Shape s = serializer.Deserialize(filename);
         }
     }
 }

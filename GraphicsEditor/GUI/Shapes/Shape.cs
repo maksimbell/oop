@@ -3,6 +3,7 @@
 
 namespace GUI.Drawer
 {
+    [Serializable]
     public abstract class Shape: IDrawable, IResizeable
     {
         private Point startPoint;

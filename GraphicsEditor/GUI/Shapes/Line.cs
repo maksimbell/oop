@@ -2,6 +2,7 @@
 
 namespace GUI.Drawer
 {
+    [Serializable]
     public class Line:Shape
     {
         public Point endPoint;

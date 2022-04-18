@@ -38,6 +38,9 @@
             this.tbWidth = new System.Windows.Forms.TrackBar();
             this.lblColor = new System.Windows.Forms.Label();
             this.lblWidth = new System.Windows.Forms.Label();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnLoad = new System.Windows.Forms.Button();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.canvas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbWidth)).BeginInit();
             this.SuspendLayout();
@@ -142,11 +145,37 @@
             this.lblWidth.TabIndex = 8;
             this.lblWidth.Text = "Width:";
             // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(8, 289);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(94, 29);
+            this.btnSave.TabIndex = 9;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.button1_Click_2);
+            // 
+            // btnLoad
+            // 
+            this.btnLoad.Location = new System.Drawing.Point(108, 289);
+            this.btnLoad.Name = "btnLoad";
+            this.btnLoad.Size = new System.Drawing.Size(94, 29);
+            this.btnLoad.TabIndex = 10;
+            this.btnLoad.Text = "Load";
+            this.btnLoad.UseVisualStyleBackColor = true;
+            this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
+            // 
+            // openFileDialog
+            // 
+            this.openFileDialog.FileName = "openFileDialog1";
+            // 
             // GraphicsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnLoad);
+            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.lblWidth);
             this.Controls.Add(this.lblColor);
             this.Controls.Add(this.tbWidth);
@@ -180,5 +209,8 @@
         private TrackBar tbWidth;
         private Label lblColor;
         private Label lblWidth;
+        private Button btnSave;
+        private Button btnLoad;
+        private OpenFileDialog openFileDialog;
     }
 }
