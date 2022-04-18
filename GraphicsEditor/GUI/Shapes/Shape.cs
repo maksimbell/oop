@@ -8,12 +8,20 @@ namespace GUI.Drawer
     {
         private Point startPoint;
 
-        private Pen pen = new Pen(Color.Bisque);
+        private PenState penState;
+
+        [NonSerialized]
+        private Pen pen; 
 
         public Point StartPoint
         {
             get { return startPoint; } 
             set { startPoint = value; }
+        }
+        public PenState PenState
+        {
+            get { return penState; }
+            set { penState = value; }
         }
 
         public Pen Pen

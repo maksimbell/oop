@@ -12,6 +12,10 @@ namespace GUI.Drawer
             this.StartPoint = center;
             this.a = a;
             this.b = b;
+
+            PenState = new PenState();
+            PenState.Width = pen.Width;
+            PenState.Color = pen.Color;
             Pen = (Pen)pen.Clone();
         }
 

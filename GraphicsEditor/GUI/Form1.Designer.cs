@@ -73,6 +73,7 @@
             // 
             // btnClear
             // 
+            this.btnClear.Enabled = false;
             this.btnClear.Location = new System.Drawing.Point(108, 409);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(94, 29);
@@ -147,6 +148,7 @@
             // 
             // btnSave
             // 
+            this.btnSave.Enabled = false;
             this.btnSave.Location = new System.Drawing.Point(8, 289);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(94, 29);
@@ -185,11 +187,11 @@
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnDraw);
             this.Controls.Add(this.canvas);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "GraphicsForm";
             this.Text = "graphics";
-            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.canvas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbWidth)).EndInit();
             this.ResumeLayout(false);

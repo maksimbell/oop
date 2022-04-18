@@ -20,6 +20,9 @@ namespace GUI.Drawer
                 throw new Exception("3 points expected.");
             }
 
+            PenState = new PenState();
+            PenState.Width = pen.Width;
+            PenState.Color = pen.Color;
             Pen = (Pen)pen.Clone();
             this.points = points;
         }

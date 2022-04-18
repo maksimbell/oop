@@ -36,11 +36,6 @@ namespace GUI
             cbShapesType.SelectedIndex = 0;
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            
-        }
-
         private void InitializeStaticShapes()
         {
             staticShapes = new List<Shape>
@@ -75,18 +70,14 @@ namespace GUI
             }
         }
 
-        private void UpdatePen()
-        {
-            canvasPen.Width = tbWidth.Value;
-            canvasPen.Color = shapesColorDialog.Color;
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             foreach (var shape in staticShapes)
             {
                 shape.Draw(sd);
             }
+
+            btnClear.Enabled = true;   
         }
 
         private void button1_Click_1(object sender, EventArgs e)
@@ -105,6 +96,7 @@ namespace GUI
                 shapes.Clear();
             }
 
+            btnClear.Enabled = false;
             Refresh();
             DrawShapesCanvas();
             selectedShapes.Clear();
@@ -136,12 +128,19 @@ namespace GUI
 
         }
 
+        private void AddCurrentShape()
+        {
+            shapes.Add(this.currentShape);
+            lbShapes.Items.Add(currentShape.ToString().Replace("GUI.Drawer.", ""));
+        }
+
         private void canvas_MouseUp(object sender, MouseEventArgs e)
         {
-            if (currentShape != null) shapes.Add(this.currentShape);
-            lbShapes.Items.Add(currentShape.ToString().Replace("GUI.Drawer.","")) ;
+            //if (currentShape != null) 
+            AddCurrentShape();
 
-            currentShape = null;
+            currentShape = null; 
+            btnClear.Enabled = true;
 
         }
 
@@ -152,7 +151,7 @@ namespace GUI
 
             btnColorChange.BackColor = shapesColorDialog.Color;
 
-            UpdatePen();
+            canvasPen.Color = shapesColorDialog.Color;
             ChangeSelectedShapes();
 
             Refresh();
@@ -174,13 +173,15 @@ namespace GUI
                     System.Drawing.Drawing2D.DashStyle.Solid;
             }
 
+            btnSave.Enabled = selectedShapes.Count == 1 ? true : false;
+
             Refresh();
             DrawShapesCanvas();
         }
 
         private void tbWidth_Scroll(object sender, EventArgs e)
         {
-            UpdatePen();
+            canvasPen.Width = tbWidth.Value;
             ChangeSelectedShapes();
 
             Refresh();
@@ -191,18 +192,25 @@ namespace GUI
         {
             if (openFileDialog.ShowDialog() == DialogResult.Cancel)
                 return;
-            string filename = openFileDialog.FileName;
 
-            serializer.Serialize(shapes[0], filename);
+            serializer.Serialize(shapes[selectedShapes[0]], openFileDialog.FileName);
         }
 
         private void btnLoad_Click(object sender, EventArgs e)
         {
             if (openFileDialog.ShowDialog() == DialogResult.Cancel)
                 return;
-            string filename = openFileDialog.FileName;
 
-            Shape s = serializer.Deserialize(filename);
+            currentShape = serializer.Deserialize(openFileDialog.FileName);
+
+            currentShape.Pen = new Pen(currentShape.PenState.Color);
+            currentShape.Pen.Width = currentShape.PenState.Width;
+
+            AddCurrentShape();
+
+            btnClear.Enabled = true;
+            Refresh();
+            DrawShapesCanvas();
         }
     }
 }

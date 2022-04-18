@@ -10,7 +10,7 @@ namespace GUI
     public class PenState
     {
         private Color color;
-        private int width;
+        private float width;
 
         public Color Color
         {
@@ -18,10 +18,12 @@ namespace GUI
             set { color = value; }
         }
 
-        public int Width
+        public float Width
         {
             get { return width; }
             set { width = value; }
         }
+
+        public PenState() { }
     }
 }

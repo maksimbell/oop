@@ -16,9 +16,11 @@ namespace GUI.Drawer
         {
             this.StartPoint = center;
             this.radius = radius;
-            Pen = (Pen)pen.Clone();
-            /*Pen.Color = pen.Color;*/
 
+            PenState = new PenState();
+            PenState.Width = pen.Width;
+            PenState.Color = pen.Color;
+            Pen = (Pen)pen.Clone();
         }
 
         public override float CalculateSquare()
