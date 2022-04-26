@@ -8,38 +8,22 @@ namespace GUI.Drawer
 {
     public class ShapeCreator
     {
+        private Dictionary<string, Func<Point, Pen, Shape>> shapeCreateHandlers = new Dictionary<string, Func<Point, Pen, Shape>>();
         public ShapeCreator()
         {
-
+            shapeCreateHandlers = new Dictionary<string, Func<Point, Pen, Shape>> {
+                { "Square", ShapeCreateHandler.CreateSquare },
+                { "Circle", ShapeCreateHandler.CreateCircle },
+                { "Rectangle", ShapeCreateHandler.CreateRectangle },
+                { "Ellipse", ShapeCreateHandler.CreateEllipse },
+                { "Triangle", ShapeCreateHandler.CreateTriangle },
+                { "Line", ShapeCreateHandler.CreateLine }
+            };
         }
-        
+
         public Shape CreateShape(string type, Point start, Pen pen)
         {
-
-           /* Line
-            Square
-            Rectangle
-            Triangle
-            Circle
-            Ellipse*/
-
-            switch (type)
-            {
-                case "Line":
-                    return new Line(start, start, pen);
-                case "Square":
-                    return new Square(new List<Point> { start, start, start, start }, pen);
-                case "Rectangle":
-                    return new Rect(new List<Point> { start, start, start, start }, pen);
-                case "Triangle":
-                    return new Triangle(new List<Point> { start, start, start}, pen);
-                case "Circle":
-                    return new Circle(start, 0, pen);
-                case "Ellipse":
-                    return new Ellipse(start, 0, 0, pen);
-                default:
-                    return null;
-            }
+            return shapeCreateHandlers[type](start, pen);
         }
 
     }

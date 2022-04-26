@@ -136,7 +136,7 @@ namespace GUI
 
         private void canvas_MouseUp(object sender, MouseEventArgs e)
         {
-            //if (currentShape != null) 
+            if (currentShape != null) 
             AddCurrentShape();
 
             currentShape = null; 

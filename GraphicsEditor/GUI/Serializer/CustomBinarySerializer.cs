@@ -13,8 +13,9 @@ namespace GUI.Serializer
         public void Serialize(T obj, string filename)
         {
             BinaryFormatter formatter = new BinaryFormatter();
-            using (FileStream fs = new FileStream(filename, FileMode.OpenOrCreate))
+            using (FileStream fs = new FileStream(filename, FileMode.Truncate))
             {
+                fs.Position = 0;
                 formatter.Serialize(fs, obj);
             }
         }
