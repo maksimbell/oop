@@ -96,6 +96,7 @@
             this.cbShapesType.Name = "cbShapesType";
             this.cbShapesType.Size = new System.Drawing.Size(194, 28);
             this.cbShapesType.TabIndex = 3;
+            this.cbShapesType.SelectedIndexChanged += new System.EventHandler(this.cbShapesType_SelectedIndexChanged);
             // 
             // lbShapes
             // 

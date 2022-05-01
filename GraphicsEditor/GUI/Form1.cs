@@ -1,10 +1,13 @@
 using GUI.Drawer;
 using GUI.Serializer;
+using GUI.PluginHandler;
+using GUI.ShapeCreators;
 
 namespace GUI
 {
     public partial class GraphicsForm : Form
     {
+        private string pluginsPath = "C:/Users/maksimbell/bsuir/4sem/oop/labs/GraphicsEditor/GUI/Plugins/ShapePlugins/bin/Debug/net6.0";
 
         private List<Shape> staticShapes;
 
@@ -12,9 +15,7 @@ namespace GUI
 
         private Shape currentShape = null;
 
-        private ShapeCreator shapeCreator = new ShapeCreator();
-
-        //private ShapeType currentShapeType;
+        private ShapeCreator shapeCreator = null;
 
         private ShapesDrawer sd;
 
@@ -24,16 +25,50 @@ namespace GUI
 
         private CustomBinarySerializer<Shape> serializer;
 
+        private PluginLoader loader = null;
+
+        private List<Type> plugins = new List<Type>();
+        private List<Type> shapePlugins = new List<Type>();
+        private List<Type> shapeHandlerPlugins = new List<Type>();
+
         public GraphicsForm()
         {
             InitializeComponent();
             InitializeStaticShapes();
+
+            LoadPlugins();
+
+            shapeCreator = new ShapeCreator(shapePlugins, shapeHandlerPlugins);
+            
+            //List<Point> list = new List<Point>() { new Point(100, 250),
+            //       new Point(100, 350), new Point(150, 350), new Point(150, 250) };
+
+            //Type type = loader.plugins[0];
+            //var instance = Activator.CreateInstance(type, (List<Point>)list, (Pen)canvasPen);
 
             Graphics graphics = canvas.CreateGraphics();
             sd = new ShapesDrawer(graphics);
             serializer = new CustomBinarySerializer<Shape>();
 
             cbShapesType.SelectedIndex = 0;
+        }  
+        
+        private void LoadPlugins()
+        {
+            loader = new PluginLoader(pluginsPath);
+            plugins = loader.Load("ShapePlugins");
+
+            foreach (var plugin in plugins)
+            {
+                if (plugin.FullName.Contains("Handler")){
+                    shapeHandlerPlugins.Add(plugin);
+                }
+                else
+                {
+                    shapePlugins.Add(plugin);
+                    cbShapesType.Items.Add(plugin.Name);
+                }
+            }
         }
 
         private void InitializeStaticShapes()
@@ -104,12 +139,12 @@ namespace GUI
 
         private void canvas_MouseDown(object sender, MouseEventArgs e)
         {
-            currentShape = shapeCreator.CreateShape(cbShapesType.Text, new Point(e.X, e.Y), canvasPen);
+            currentShape = shapeCreator.GetShape(cbShapesType.Text, new Point(e.X, e.Y), canvasPen);
         }
 
         private void canvas_Click(object sender, EventArgs e)
         {
-
+            //ShapeCreator = new SC()
         }
 
         private void canvas_MouseMove(object sender, MouseEventArgs e)
@@ -131,7 +166,7 @@ namespace GUI
         private void AddCurrentShape()
         {
             shapes.Add(this.currentShape);
-            lbShapes.Items.Add(currentShape.ToString().Replace("GUI.Drawer.", ""));
+            lbShapes.Items.Add(currentShape.ToString().Split(".")[^1]);
         }
 
         private void canvas_MouseUp(object sender, MouseEventArgs e)
@@ -211,6 +246,11 @@ namespace GUI
             btnClear.Enabled = true;
             Refresh();
             DrawShapesCanvas();
+        }
+
+        private void cbShapesType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //shapeCreator = new ShapeCreator(cbShapesType.Text, shapePlugins);
         }
     }
 }

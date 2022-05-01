@@ -8,6 +8,6 @@ namespace GUI.Interfaces
 {
     public interface IPlugin
     {
-        void Activate();
+        string Activate(string text);
     }
 }
