@@ -38,8 +38,6 @@ namespace GUI
 
             LoadPlugins();
 
-            shapeCreator = new ShapeCreator(shapePlugins, shapeHandlerPlugins);
-            
             //List<Point> list = new List<Point>() { new Point(100, 250),
             //       new Point(100, 350), new Point(150, 350), new Point(150, 250) };
 
@@ -131,7 +129,7 @@ namespace GUI
                 shapes.Clear();
             }
 
-            btnClear.Enabled = false;
+            //btnClear.Enabled = false;
             Refresh();
             DrawShapesCanvas();
             selectedShapes.Clear();
@@ -250,7 +248,7 @@ namespace GUI
 
         private void cbShapesType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //shapeCreator = new ShapeCreator(cbShapesType.Text, shapePlugins);
+            shapeCreator = new ShapeCreator(cbShapesType.Text, shapePlugins, shapeHandlerPlugins);
         }
     }
 }
