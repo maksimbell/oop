@@ -41,6 +41,8 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnLoad = new System.Windows.Forms.Button();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.cbSerializer = new System.Windows.Forms.ComboBox();
+            this.lblCurrentSerializer = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.canvas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbWidth)).BeginInit();
             this.SuspendLayout();
@@ -150,7 +152,7 @@
             // btnSave
             // 
             this.btnSave.Enabled = false;
-            this.btnSave.Location = new System.Drawing.Point(8, 289);
+            this.btnSave.Location = new System.Drawing.Point(8, 343);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(94, 29);
             this.btnSave.TabIndex = 9;
@@ -160,7 +162,7 @@
             // 
             // btnLoad
             // 
-            this.btnLoad.Location = new System.Drawing.Point(108, 289);
+            this.btnLoad.Location = new System.Drawing.Point(108, 343);
             this.btnLoad.Name = "btnLoad";
             this.btnLoad.Size = new System.Drawing.Size(94, 29);
             this.btnLoad.TabIndex = 10;
@@ -172,11 +174,34 @@
             // 
             this.openFileDialog.FileName = "openFileDialog1";
             // 
+            // cbSerializer
+            // 
+            this.cbSerializer.FormattingEnabled = true;
+            this.cbSerializer.Items.AddRange(new object[] {
+            "CustomBinarySerializer"});
+            this.cbSerializer.Location = new System.Drawing.Point(8, 309);
+            this.cbSerializer.Name = "cbSerializer";
+            this.cbSerializer.Size = new System.Drawing.Size(194, 28);
+            this.cbSerializer.TabIndex = 11;
+            this.cbSerializer.SelectedIndexChanged += new System.EventHandler(this.cbSerializer_SelectedIndexChanged);
+            // 
+            // lblCurrentSerializer
+            // 
+            this.lblCurrentSerializer.AutoSize = true;
+            this.lblCurrentSerializer.Location = new System.Drawing.Point(8, 286);
+            this.lblCurrentSerializer.Name = "lblCurrentSerializer";
+            this.lblCurrentSerializer.Size = new System.Drawing.Size(120, 20);
+            this.lblCurrentSerializer.TabIndex = 12;
+            this.lblCurrentSerializer.Text = "Current method: ";
+            this.lblCurrentSerializer.Click += new System.EventHandler(this.lblCurrentSerializer_Click);
+            // 
             // GraphicsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lblCurrentSerializer);
+            this.Controls.Add(this.cbSerializer);
             this.Controls.Add(this.btnLoad);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.lblWidth);
@@ -193,6 +218,7 @@
             this.MaximizeBox = false;
             this.Name = "GraphicsForm";
             this.Text = "graphics";
+            this.Load += new System.EventHandler(this.GraphicsForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.canvas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbWidth)).EndInit();
             this.ResumeLayout(false);
@@ -215,5 +241,7 @@
         private Button btnSave;
         private Button btnLoad;
         private OpenFileDialog openFileDialog;
+        private Label lblCurrentSerializer;
+        private ComboBox cbSerializer;
     }
 }

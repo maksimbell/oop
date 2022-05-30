@@ -13,6 +13,7 @@ namespace GUI.Drawer
 
         public List<Point> points = new();
 
+        public Triangle() : base() { }
         public Triangle(List<Point> points, Pen pen)
         {
             if (points.Count != 3)
@@ -23,6 +24,7 @@ namespace GUI.Drawer
             PenState = new PenState();
             PenState.Width = pen.Width;
             PenState.Color = pen.Color;
+            PenState.RGB = PenState.Color.ToArgb();
             Pen = (Pen)pen.Clone();
             this.points = points;
         }

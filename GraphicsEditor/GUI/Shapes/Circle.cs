@@ -10,8 +10,9 @@ namespace GUI.Drawer
     [Serializable]
     public class Circle:Shape
     {
-        int radius;
-       
+        public int radius;
+
+        public Circle() : base() { }
         public Circle(Point center, int radius, Pen pen)
         {
             this.StartPoint = center;
@@ -20,6 +21,7 @@ namespace GUI.Drawer
             PenState = new PenState();
             PenState.Width = pen.Width;
             PenState.Color = pen.Color;
+            PenState.RGB = PenState.Color.ToArgb();
             Pen = (Pen)pen.Clone();
         }
 

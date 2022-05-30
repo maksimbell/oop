@@ -11,6 +11,7 @@ namespace ShapePlugins
         public int width;
         public List<Point> points = new();
 
+        public Rhombus():base(){}
         public Rhombus(List<Point> points, Pen pen)
         {
             if (points.Count != 4)
@@ -21,6 +22,7 @@ namespace ShapePlugins
             PenState = new PenState();
             PenState.Width = pen.Width;
             PenState.Color = pen.Color;
+            PenState.RGB = PenState.Color.ToArgb();
             Pen = (Pen)pen.Clone();
             this.points = points;
         }

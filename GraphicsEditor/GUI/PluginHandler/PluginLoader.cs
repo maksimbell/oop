@@ -11,6 +11,8 @@ namespace GUI.PluginHandler
 {
     public class PluginLoader
     {
+        private string AssemblyPath = "/bin/Debug/net6.0";
+        private string ext = ".dll";
         private List<Type> plugins = new List<Type>();
         private string Path { get; set; }
         public PluginLoader(string path)
@@ -22,11 +24,11 @@ namespace GUI.PluginHandler
         {
             plugins.Clear();
 
-            DirectoryInfo pluginDirectory = new DirectoryInfo(Path);
+            DirectoryInfo pluginDirectory = new DirectoryInfo(Path + plugin + AssemblyPath);
             if (!pluginDirectory.Exists)
                 pluginDirectory.Create();
 
-            var pluginFiles = Directory.GetFiles(Path, "ShapePlugins.dll");
+            var pluginFiles = Directory.GetFiles(Path + plugin + AssemblyPath, plugin + ext);
             foreach (var file in pluginFiles)
             {
                 Assembly asm = Assembly.LoadFrom(file);
@@ -35,7 +37,8 @@ namespace GUI.PluginHandler
 
                 foreach (var type in types)
                 {
-                    if (type.FullName.Contains(plugin)) {
+                    if (type.FullName.Contains(plugin))
+                    {
                         plugins.Add(type);
                     }
                 }

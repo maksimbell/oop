@@ -1,8 +1,13 @@
 ﻿using System.Drawing;
-
+using System.Xml.Serialization;
+using GUI;
 
 namespace GUI.Drawer
 {
+    [XmlInclude(typeof(PenState)), XmlInclude(typeof(Color)), XmlInclude(typeof(Line)), 
+        XmlInclude(typeof(Rect)), XmlInclude(typeof(Circle)),
+        XmlInclude(typeof(Ellipse)), XmlInclude(typeof(Triangle)), XmlInclude(typeof(Square)), 
+        XmlInclude(typeof(ShapePlugins.Rhombus)), XmlInclude(typeof(ShapePlugins.RightTriangle))]
     [Serializable]
     public abstract class Shape: IDrawable, IResizeable
     {
@@ -10,8 +15,8 @@ namespace GUI.Drawer
 
         private PenState penState;
 
-        [NonSerialized]
-        private Pen pen; 
+        [XmlIgnore, NonSerialized]
+        public Pen Pen;
 
         public Point StartPoint
         {
@@ -24,11 +29,11 @@ namespace GUI.Drawer
             set { penState = value; }
         }
 
-        public Pen Pen
+        /*public Pen Pen
         {
             get { return pen; } 
             set { pen = value; }
-        }
+        }*/
 
         public abstract float CalculateSquare();
 

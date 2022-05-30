@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System.Xml.Serialization;
 
 namespace GUI.Drawer
 {
@@ -7,6 +8,7 @@ namespace GUI.Drawer
     {
         public Point endPoint;
 
+        public Line():base(){}
         public Line(Point start, Point end, Pen pen)
         {
             this.StartPoint = start;
@@ -15,6 +17,7 @@ namespace GUI.Drawer
             PenState = new PenState();
             PenState.Width = pen.Width;
             PenState.Color = pen.Color;
+            PenState.RGB = PenState.Color.ToArgb();
             Pen = (Pen)pen.Clone();
         }
 

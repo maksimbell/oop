@@ -5,8 +5,9 @@ namespace GUI.Drawer
     [Serializable]
     public class Ellipse:Shape
     {
-        int a, b;
+        public int a, b;
 
+        public Ellipse() : base() { }
         public Ellipse(Point center, int a, int b, Pen pen)
         {
             this.StartPoint = center;
@@ -16,6 +17,7 @@ namespace GUI.Drawer
             PenState = new PenState();
             PenState.Width = pen.Width;
             PenState.Color = pen.Color;
+            PenState.RGB = PenState.Color.ToArgb();
             Pen = (Pen)pen.Clone();
         }
 
