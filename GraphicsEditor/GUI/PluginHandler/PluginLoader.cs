@@ -12,7 +12,7 @@ namespace GUI.PluginHandler
     public class PluginLoader
     {
         private string AssemblyPath = "/bin/Debug/net6.0";
-        private string ext = ".dll";
+        private string dllExt = ".dll";
         private List<Type> plugins = new List<Type>();
         private string Path { get; set; }
         public PluginLoader(string path)
@@ -28,7 +28,7 @@ namespace GUI.PluginHandler
             if (!pluginDirectory.Exists)
                 pluginDirectory.Create();
 
-            var pluginFiles = Directory.GetFiles(Path + plugin + AssemblyPath, plugin + ext);
+            var pluginFiles = Directory.GetFiles(Path + plugin + AssemblyPath, plugin + dllExt);
             foreach (var file in pluginFiles)
             {
                 Assembly asm = Assembly.LoadFrom(file);
@@ -41,6 +41,30 @@ namespace GUI.PluginHandler
                     {
                         plugins.Add(type);
                     }
+                }
+            }
+
+            return plugins;
+        }
+
+        public List<Type> LoadStrangePlugins()
+        {
+            plugins.Clear();
+
+            DirectoryInfo pluginDirectory = new DirectoryInfo(Path + "StrangePlugins" + AssemblyPath);
+            if (!pluginDirectory.Exists)
+                pluginDirectory.Create();
+
+            var pluginFiles = Directory.GetFiles(Path + "StrangePlugins" + AssemblyPath, "*" + dllExt);
+            foreach (var file in pluginFiles)
+            {
+                Assembly asm = Assembly.LoadFrom(file);
+
+                var types = asm.GetTypes();
+
+                foreach (var type in types)
+                {
+                    plugins.Add(type);
                 }
             }
 

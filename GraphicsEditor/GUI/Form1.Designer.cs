@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GraphicsForm));
             this.canvas = new System.Windows.Forms.PictureBox();
             this.btnDraw = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
@@ -51,6 +52,7 @@
             // 
             this.canvas.AccessibleRole = System.Windows.Forms.AccessibleRole.Graphic;
             this.canvas.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.canvas.Image = ((System.Drawing.Image)(resources.GetObject("canvas.Image")));
             this.canvas.ImageLocation = "";
             this.canvas.Location = new System.Drawing.Point(208, 12);
             this.canvas.Name = "canvas";

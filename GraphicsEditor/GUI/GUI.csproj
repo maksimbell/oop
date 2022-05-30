@@ -9,6 +9,27 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Reference Include="BaseFigure">
+      <HintPath>Plugins\StrangePlugins\bin\Debug\net6.0\BaseFigure.dll</HintPath>
+    </Reference>
+    <Reference Include="FilledCircle">
+      <HintPath>Plugins\StrangePlugins\bin\Debug\net6.0\FilledCircle.dll</HintPath>
+    </Reference>
+    <Reference Include="FilledHexagon">
+      <HintPath>Plugins\StrangePlugins\bin\Debug\net6.0\FilledHexagon.dll</HintPath>
+    </Reference>
+    <Reference Include="FilledRectangle">
+      <HintPath>Plugins\StrangePlugins\bin\Debug\net6.0\FilledRectangle.dll</HintPath>
+    </Reference>
+    <Reference Include="FilledRhombus">
+      <HintPath>Plugins\StrangePlugins\bin\Debug\net6.0\FilledRhombus.dll</HintPath>
+    </Reference>
+    <Reference Include="FilledTriangle">
+      <HintPath>Plugins\StrangePlugins\bin\Debug\net6.0\FilledTriangle.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>

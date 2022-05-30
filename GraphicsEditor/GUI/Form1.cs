@@ -2,6 +2,10 @@ using GUI.Drawer;
 using GUI.Serializer;
 using GUI.PluginHandler;
 using GUI.ShapeCreators;
+using GUI.Patterns;
+using BaseFigure;
+using FilledCircle;
+using FilledTriangle;
 
 namespace GUI
 {
@@ -33,6 +37,7 @@ namespace GUI
         private List<Type> shapeHandlerPlugins = new List<Type>();
         private List<Type> serializerPlugins = new List<Type>();
         private List<Type> serializerHandlerPlugins = new List<Type>();
+        private List<Type> strangePlugins = new List<Type>();
 
         public GraphicsForm()
         {
@@ -40,9 +45,8 @@ namespace GUI
             InitializeStaticShapes();
 
             LoadPlugins();
-
             Graphics graphics = canvas.CreateGraphics();
-            sd = new ShapesDrawer(graphics);
+            sd = new ShapesDrawer(graphics, canvas);
 
             shapeCreator = new ShapeCreator(cbShapesType.Text, shapePlugins, shapeHandlerPlugins);
             serializerCreator = new SerializerCreator<Shape>(serializerPlugins, serializerHandlerPlugins);
@@ -82,6 +86,23 @@ namespace GUI
                     cbSerializer.Items.Add(plugin.ToString().Split('.')[1]);
                 }
             }
+
+            plugins = loader.LoadStrangePlugins();
+
+            foreach (var plugin in plugins)
+            {
+                strangePlugins.Add(plugin);
+            }
+
+            Type type = strangePlugins[0].GetType();
+            var obj = Activator.CreateInstance(strangePlugins[1]);
+
+            /*Figure f = new FilledTriangle.FilledTriangle();
+            f.Points = new List<Point>() { new Point(100, 250), new Point(100, 100), new Point(250, 250) };
+            f.Draw(sd.pictureBox.Image);*/
+
+            
+
         }
 
         private void InitializeStaticShapes()
@@ -129,7 +150,12 @@ namespace GUI
                 shape.Draw(sd);
             }
 
-            btnClear.Enabled = true;   
+            btnClear.Enabled = true;
+
+            Shape filledTriangle = new FilledTriangleAdapter(new List<Point>() {
+                new Point(100, 250), new Point(100, 100), new Point(250, 250) }, canvasPen);
+
+            filledTriangle.Draw(sd);
         }
 
         private void button1_Click_1(object sender, EventArgs e)
