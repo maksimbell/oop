@@ -17,6 +17,8 @@ using BaseFigure;
 using FilledHexagon;
 using FilledTriangle;
 using ShapePlugins;
+using System.Runtime.Serialization;
+using System.Security;
 
 namespace SerializerPlugins.CustomBinaryXmlSerializer
 {
@@ -31,18 +33,48 @@ namespace SerializerPlugins.CustomBinaryXmlSerializer
 
             BinaryFormatter binFormatter = new BinaryFormatter(); 
             byte[] buf;
+
             using (MemoryStream ms = new MemoryStream())
             {
-                ms.Position = 0;
-                binFormatter.Serialize(ms, obj);
-                buf = ms.ToArray();
-                
+                try
+                {
+                    ms.Position = 0;
+                    binFormatter.Serialize(ms, obj);
+                    buf = ms.ToArray();
+                }
+                catch (Exception ex)
+                {
+                    if (ex is ArgumentException)
+                    {
+                        throw new CustomSerializerException();
+                    }
+                    if (ex is SerializationException)
+                    {
+                        throw new CustomSerializerException();
+                    }
+                    if (ex is SecurityException)
+                    {
+                        throw new CustomSerializerException();
+                    }
+                    throw;
+                }
             }
+
             XmlSerializer xmlFormatter = new XmlSerializer(typeof(byte[]), types);
             using (FileStream fs = new FileStream(filename, FileMode.Truncate))
             {
-                fs.Position = 0;
-                xmlFormatter.Serialize(fs, buf);
+                try
+                {
+                    fs.Position = 0;
+                    xmlFormatter.Serialize(fs, buf);
+                }
+                catch (Exception ex)
+                {
+                    if (ex is InvalidOperationException)
+                    {
+                        throw new CustomSerializerException();
+                    }
+                }
             }
 
         }
@@ -53,14 +85,52 @@ namespace SerializerPlugins.CustomBinaryXmlSerializer
             byte[] buf;
             using (FileStream fs = new FileStream(filename, FileMode.OpenOrCreate))
             {
-                buf = (byte[])xmlFormatter.Deserialize(fs);
+                try
+                {
+                    buf = (byte[])xmlFormatter.Deserialize(fs);
+                }
+                catch (Exception ex)
+                {
+                    if (ex is InvalidOperationException)
+                    {
+                        throw new CustomSerializerException();
+                    }
+                    if (ex is SerializationException)
+                    {
+                        throw new CustomSerializerException();
+                    }
+                    if (ex is SecurityException)
+                    {
+                        throw new CustomSerializerException();
+                    }
+                    throw;
+                }
             }
 
             BinaryFormatter binFormatter = new BinaryFormatter();
             using (MemoryStream ms = new MemoryStream(buf))
             {
-                T obj = (T)binFormatter.Deserialize(ms);
-                return obj;
+                try
+                {
+                    T obj = (T)binFormatter.Deserialize(ms);
+                    return obj;
+                }
+                catch (Exception ex)
+                {
+                    if (ex is ArgumentException)
+                    {
+                        throw new CustomSerializerException();
+                    }
+                    if (ex is SerializationException)
+                    {
+                        throw new CustomSerializerException();
+                    }
+                    if (ex is SecurityException)
+                    {
+                        throw new CustomSerializerException();
+                    }
+                    throw;
+                }
             }
         }
 

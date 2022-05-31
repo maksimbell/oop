@@ -229,7 +229,7 @@ namespace GUI
             {
                 serializer.Serialize(shapes[selectedShapes[0]], openFileDialog.FileName);
             }
-            catch (CustomBinarySerializerException ex)
+            catch (CustomSerializerException ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -253,7 +253,7 @@ namespace GUI
                 btnClear.Enabled = true;
                 DrawShapesCanvas();
             }
-            catch (CustomBinarySerializerException ex)
+            catch (CustomSerializerException ex)
             {
                 MessageBox.Show(ex.Message);
             }
