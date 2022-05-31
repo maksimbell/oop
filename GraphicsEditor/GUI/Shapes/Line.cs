@@ -36,5 +36,10 @@ namespace GUI.Drawer
         {
             endPoint = rp;
         }
+
+        public override Shape Clone()
+        {
+            return (Shape)this.MemberwiseClone();
+        }
     }
 }

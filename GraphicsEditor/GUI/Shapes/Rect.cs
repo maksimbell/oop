@@ -46,5 +46,10 @@ namespace GUI.Drawer
             points[2] = rp;
         }
 
+        public override Shape Clone()
+        {
+            return (Shape)this.MemberwiseClone();
+        }
+
     }
 }

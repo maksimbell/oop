@@ -47,5 +47,10 @@ namespace GUI.Drawer
             points[2] = new Point(points[0].X + ShapeCalculator.GetXDistance(rp, points[0]), points[0].Y + ShapeCalculator.GetXDistance(rp, points[0]));
 
         }
+
+        public override Shape Clone()
+        {
+            return (Shape)this.MemberwiseClone();
+        }
     }
 }

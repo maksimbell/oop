@@ -43,5 +43,10 @@ namespace GUI.Drawer
 
             radius = ShapeCalculator.GetXDistance(rp, StartPoint);
         }
+
+        public override Shape Clone()
+        {
+            return (Shape)this.MemberwiseClone();
+        }
     }
 }

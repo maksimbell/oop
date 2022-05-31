@@ -37,5 +37,10 @@ namespace GUI.Drawer
             b = ShapeCalculator.GetYDistance(rp, StartPoint);
            
         }
+
+        public override Shape Clone()
+        {
+            return (Shape)this.MemberwiseClone();
+        }
     }
 }

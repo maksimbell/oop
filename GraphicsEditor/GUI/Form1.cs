@@ -208,6 +208,7 @@ namespace GUI
             }
 
             btnSave.Enabled = selectedShapes.Count == 1 ? true : false;
+            btnClone.Enabled = selectedShapes.Count == 1 ? true : false;
 
             DrawShapesCanvas();
         }
@@ -313,6 +314,15 @@ namespace GUI
                     MessageBox.Show("Selected plugins are now available", "Message");
                 }
             }
+        }
+
+        private void btnClone_Click(object sender, EventArgs e)
+        {
+            currentShape = shapes[selectedShapes[0]].Clone();
+            AddCurrentShape();
+
+            currentShape = null;
+            btnClear.Enabled = true;
         }
     }
 }

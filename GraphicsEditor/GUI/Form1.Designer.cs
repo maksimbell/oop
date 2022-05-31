@@ -46,6 +46,7 @@
             this.lblCurrentSerializer = new System.Windows.Forms.Label();
             this.btnPlugins = new System.Windows.Forms.Button();
             this.lblPlugins = new System.Windows.Forms.Label();
+            this.btnClone = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.canvas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbWidth)).BeginInit();
             this.SuspendLayout();
@@ -218,11 +219,23 @@
             this.lblPlugins.TabIndex = 14;
             this.lblPlugins.Text = "Choose plugins:";
             // 
+            // btnClone
+            // 
+            this.btnClone.Enabled = false;
+            this.btnClone.Location = new System.Drawing.Point(108, 276);
+            this.btnClone.Name = "btnClone";
+            this.btnClone.Size = new System.Drawing.Size(94, 29);
+            this.btnClone.TabIndex = 15;
+            this.btnClone.Text = "Clone";
+            this.btnClone.UseVisualStyleBackColor = true;
+            this.btnClone.Click += new System.EventHandler(this.btnClone_Click);
+            // 
             // GraphicsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 464);
+            this.Controls.Add(this.btnClone);
             this.Controls.Add(this.lblPlugins);
             this.Controls.Add(this.btnPlugins);
             this.Controls.Add(this.lblCurrentSerializer);
@@ -269,5 +282,6 @@
         private ComboBox cbSerializer;
         private Button btnPlugins;
         private Label lblPlugins;
+        private Button btnClone;
     }
 }

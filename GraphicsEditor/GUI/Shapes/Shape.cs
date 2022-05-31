@@ -40,5 +40,7 @@ namespace GUI.Drawer
         public abstract void Draw(ShapesDrawer sd);
 
         public abstract void Resize(Point rp);
+
+        public abstract Shape Clone();
     }
 }

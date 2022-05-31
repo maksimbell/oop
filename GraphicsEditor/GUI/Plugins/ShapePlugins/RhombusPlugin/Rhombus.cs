@@ -50,5 +50,10 @@ namespace ShapePlugins
             points[3] = new Point(points[0].X - ShapeCalculator.GetXDistance(rp, points[0]), (points[0].Y + rp.Y) / 2);
 
         }
+
+        public override Shape Clone()
+        {
+            return (Shape)this.MemberwiseClone();
+        }
     }
 }
