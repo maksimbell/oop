@@ -20,7 +20,8 @@ namespace GUI.ShapeCreators
 
         public Shape GetShape(string currentShape, Point point, Pen pen)
         {
-            return shapeTypeHandler.getHandler(currentShape).CreateShape(point, pen);
+            Shape shape = shapeTypeHandler.getHandler(currentShape).CreateShape(point, pen);
+            return shape;
         }
 
     }
