@@ -44,6 +44,8 @@
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.cbSerializer = new System.Windows.Forms.ComboBox();
             this.lblCurrentSerializer = new System.Windows.Forms.Label();
+            this.btnPlugins = new System.Windows.Forms.Button();
+            this.lblPlugins = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.canvas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbWidth)).BeginInit();
             this.SuspendLayout();
@@ -56,7 +58,7 @@
             this.canvas.ImageLocation = "";
             this.canvas.Location = new System.Drawing.Point(208, 12);
             this.canvas.Name = "canvas";
-            this.canvas.Size = new System.Drawing.Size(580, 426);
+            this.canvas.Size = new System.Drawing.Size(580, 440);
             this.canvas.TabIndex = 0;
             this.canvas.TabStop = false;
             this.canvas.Click += new System.EventHandler(this.canvas_Click);
@@ -67,7 +69,7 @@
             // 
             // btnDraw
             // 
-            this.btnDraw.Location = new System.Drawing.Point(8, 409);
+            this.btnDraw.Location = new System.Drawing.Point(8, 423);
             this.btnDraw.Name = "btnDraw";
             this.btnDraw.Size = new System.Drawing.Size(94, 29);
             this.btnDraw.TabIndex = 1;
@@ -78,7 +80,7 @@
             // btnClear
             // 
             this.btnClear.Enabled = false;
-            this.btnClear.Location = new System.Drawing.Point(108, 409);
+            this.btnClear.Location = new System.Drawing.Point(108, 423);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(94, 29);
             this.btnClear.TabIndex = 2;
@@ -118,7 +120,7 @@
             this.btnColorChange.BackColor = System.Drawing.Color.Black;
             this.btnColorChange.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnColorChange.ForeColor = System.Drawing.Color.Transparent;
-            this.btnColorChange.Location = new System.Drawing.Point(95, 169);
+            this.btnColorChange.Location = new System.Drawing.Point(95, 156);
             this.btnColorChange.Name = "btnColorChange";
             this.btnColorChange.Size = new System.Drawing.Size(89, 29);
             this.btnColorChange.TabIndex = 5;
@@ -127,7 +129,7 @@
             // 
             // tbWidth
             // 
-            this.tbWidth.Location = new System.Drawing.Point(83, 227);
+            this.tbWidth.Location = new System.Drawing.Point(83, 202);
             this.tbWidth.Name = "tbWidth";
             this.tbWidth.Size = new System.Drawing.Size(101, 56);
             this.tbWidth.TabIndex = 6;
@@ -136,7 +138,7 @@
             // lblColor
             // 
             this.lblColor.AutoSize = true;
-            this.lblColor.Location = new System.Drawing.Point(25, 178);
+            this.lblColor.Location = new System.Drawing.Point(25, 165);
             this.lblColor.Name = "lblColor";
             this.lblColor.Size = new System.Drawing.Size(48, 20);
             this.lblColor.TabIndex = 7;
@@ -145,16 +147,17 @@
             // lblWidth
             // 
             this.lblWidth.AutoSize = true;
-            this.lblWidth.Location = new System.Drawing.Point(25, 237);
+            this.lblWidth.Location = new System.Drawing.Point(25, 212);
             this.lblWidth.Name = "lblWidth";
             this.lblWidth.Size = new System.Drawing.Size(52, 20);
             this.lblWidth.TabIndex = 8;
             this.lblWidth.Text = "Width:";
+            this.lblWidth.Click += new System.EventHandler(this.lblWidth_Click);
             // 
             // btnSave
             // 
             this.btnSave.Enabled = false;
-            this.btnSave.Location = new System.Drawing.Point(8, 343);
+            this.btnSave.Location = new System.Drawing.Point(8, 380);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(94, 29);
             this.btnSave.TabIndex = 9;
@@ -164,7 +167,7 @@
             // 
             // btnLoad
             // 
-            this.btnLoad.Location = new System.Drawing.Point(108, 343);
+            this.btnLoad.Location = new System.Drawing.Point(108, 380);
             this.btnLoad.Name = "btnLoad";
             this.btnLoad.Size = new System.Drawing.Size(94, 29);
             this.btnLoad.TabIndex = 10;
@@ -181,7 +184,7 @@
             this.cbSerializer.FormattingEnabled = true;
             this.cbSerializer.Items.AddRange(new object[] {
             "CustomBinarySerializer"});
-            this.cbSerializer.Location = new System.Drawing.Point(8, 309);
+            this.cbSerializer.Location = new System.Drawing.Point(8, 346);
             this.cbSerializer.Name = "cbSerializer";
             this.cbSerializer.Size = new System.Drawing.Size(194, 28);
             this.cbSerializer.TabIndex = 11;
@@ -190,17 +193,38 @@
             // lblCurrentSerializer
             // 
             this.lblCurrentSerializer.AutoSize = true;
-            this.lblCurrentSerializer.Location = new System.Drawing.Point(8, 286);
+            this.lblCurrentSerializer.Location = new System.Drawing.Point(8, 323);
             this.lblCurrentSerializer.Name = "lblCurrentSerializer";
             this.lblCurrentSerializer.Size = new System.Drawing.Size(120, 20);
             this.lblCurrentSerializer.TabIndex = 12;
             this.lblCurrentSerializer.Text = "Current method: ";
             // 
+            // btnPlugins
+            // 
+            this.btnPlugins.Location = new System.Drawing.Point(8, 276);
+            this.btnPlugins.Name = "btnPlugins";
+            this.btnPlugins.Size = new System.Drawing.Size(94, 29);
+            this.btnPlugins.TabIndex = 13;
+            this.btnPlugins.Text = "Plugins";
+            this.btnPlugins.UseVisualStyleBackColor = true;
+            this.btnPlugins.Click += new System.EventHandler(this.btnPlugins_Click);
+            // 
+            // lblPlugins
+            // 
+            this.lblPlugins.AutoSize = true;
+            this.lblPlugins.Location = new System.Drawing.Point(8, 253);
+            this.lblPlugins.Name = "lblPlugins";
+            this.lblPlugins.Size = new System.Drawing.Size(113, 20);
+            this.lblPlugins.TabIndex = 14;
+            this.lblPlugins.Text = "Choose plugins:";
+            // 
             // GraphicsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 464);
+            this.Controls.Add(this.lblPlugins);
+            this.Controls.Add(this.btnPlugins);
             this.Controls.Add(this.lblCurrentSerializer);
             this.Controls.Add(this.cbSerializer);
             this.Controls.Add(this.btnLoad);
@@ -243,5 +267,7 @@
         private OpenFileDialog openFileDialog;
         private Label lblCurrentSerializer;
         private ComboBox cbSerializer;
+        private Button btnPlugins;
+        private Label lblPlugins;
     }
 }

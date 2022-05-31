@@ -7,6 +7,24 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Reference Include="BaseFigure">
+      <HintPath>..\StrangePlugins\bin\Debug\net6.0\BaseFigure.dll</HintPath>
+    </Reference>
+    <Reference Include="FilledCircle">
+      <HintPath>..\StrangePlugins\bin\Debug\net6.0\FilledCircle.dll</HintPath>
+    </Reference>
+    <Reference Include="FilledHexagon">
+      <HintPath>..\StrangePlugins\bin\Debug\net6.0\FilledHexagon.dll</HintPath>
+    </Reference>
+    <Reference Include="FilledRectangle">
+      <HintPath>..\StrangePlugins\bin\Debug\net6.0\FilledRectangle.dll</HintPath>
+    </Reference>
+    <Reference Include="FilledRhombus">
+      <HintPath>..\StrangePlugins\bin\Debug\net6.0\FilledRhombus.dll</HintPath>
+    </Reference>
+    <Reference Include="FilledTriangle">
+      <HintPath>..\StrangePlugins\bin\Debug\net6.0\FilledTriangle.dll</HintPath>
+    </Reference>
     <Reference Include="GUI">
       <HintPath>..\..\bin\Debug\net6.0-windows\GUI.dll</HintPath>
     </Reference>

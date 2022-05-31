@@ -12,6 +12,11 @@ using System.Drawing;
 using System.Xml.Xsl;
 using System.Xml;
 using System.Xml.Linq;
+using FilledCircle;
+using BaseFigure;
+using FilledHexagon;
+using FilledTriangle;
+using ShapePlugins;
 
 namespace SerializerPlugins.CustomBinaryXmlSerializer
 {
@@ -21,8 +26,8 @@ namespace SerializerPlugins.CustomBinaryXmlSerializer
         public void Serialize(T obj, string filename)
         {
             Type[] types = new Type[] { typeof(MemoryStream), typeof(Shape), typeof(Line), typeof(Rect), typeof(Square),
-                typeof(Triangle), typeof(Ellipse), typeof(Circle), typeof(ShapePlugins.Rhombus),
-            typeof(ShapePlugins.RightTriangle)};
+                typeof(Triangle), typeof(Ellipse), typeof(Circle), typeof(Rhombus),
+            typeof(RightTriangle), typeof(FilledTriangle.FilledTriangle)};
 
             BinaryFormatter binFormatter = new BinaryFormatter(); 
             byte[] buf;

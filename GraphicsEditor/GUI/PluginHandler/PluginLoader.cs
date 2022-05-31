@@ -11,24 +11,33 @@ namespace GUI.PluginHandler
 {
     public class PluginLoader
     {
-        private string AssemblyPath = "/bin/Debug/net6.0";
-        private string dllExt = ".dll";
+        private static PluginLoader _instance;
+
+        private const string AssemblyPath = "/bin/Debug/net6.0";
+        private const string DllExt = ".dll";
         private List<Type> plugins = new List<Type>();
         private string Path { get; set; }
-        public PluginLoader(string path)
+
+        public static PluginLoader GetInstance()
         {
-            Path = path;
+            if (_instance == null) 
+                _instance = new PluginLoader(); 
+
+            return _instance;
         }
+
+        private PluginLoader() { }
 
         public List<Type> Load(string plugin)
         {
             plugins.Clear();
+            string pluginName = plugin.Split("\\")[^1];
 
-            DirectoryInfo pluginDirectory = new DirectoryInfo(Path + plugin + AssemblyPath);
+            DirectoryInfo pluginDirectory = new DirectoryInfo(plugin + AssemblyPath);
             if (!pluginDirectory.Exists)
                 pluginDirectory.Create();
 
-            var pluginFiles = Directory.GetFiles(Path + plugin + AssemblyPath, plugin + dllExt);
+            var pluginFiles = Directory.GetFiles(plugin + AssemblyPath, pluginName + DllExt);
             foreach (var file in pluginFiles)
             {
                 Assembly asm = Assembly.LoadFrom(file);
@@ -37,7 +46,7 @@ namespace GUI.PluginHandler
 
                 foreach (var type in types)
                 {
-                    if (type.FullName.Contains(plugin))
+                    if (type.FullName.Contains(pluginName))
                     {
                         plugins.Add(type);
                     }
@@ -55,7 +64,7 @@ namespace GUI.PluginHandler
             if (!pluginDirectory.Exists)
                 pluginDirectory.Create();
 
-            var pluginFiles = Directory.GetFiles(Path + "StrangePlugins" + AssemblyPath, "*" + dllExt);
+            var pluginFiles = Directory.GetFiles(Path + "StrangePlugins" + AssemblyPath, "*" + DllExt);
             foreach (var file in pluginFiles)
             {
                 Assembly asm = Assembly.LoadFrom(file);

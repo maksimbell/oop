@@ -37,14 +37,14 @@ namespace GUI
         private List<Type> shapeHandlerPlugins = new List<Type>();
         private List<Type> serializerPlugins = new List<Type>();
         private List<Type> serializerHandlerPlugins = new List<Type>();
-        private List<Type> strangePlugins = new List<Type>();
+        //private List<Type> strangePlugins = new List<Type>();
 
         public GraphicsForm()
         {
             InitializeComponent();
             InitializeStaticShapes();
 
-            LoadPlugins();
+            
             Graphics graphics = canvas.CreateGraphics();
             canvas.Image = DrawFilledRectangle(canvas.Width, canvas.Height);
             sd = new ShapesDrawer(graphics, canvas);
@@ -54,46 +54,6 @@ namespace GUI
 
             cbShapesType.SelectedIndex = 0;
             cbSerializer.SelectedIndex = 0;
-        }
-
-        private void LoadPlugins()
-        {
-            loader = new PluginLoader(pluginsPath);
-            /*plugins = loader.Load("ShapePlugins");
-
-            foreach (var plugin in plugins)
-            {
-                if (plugin.FullName.Contains("Handler")){
-                    shapeHandlerPlugins.Add(plugin);
-                }
-                else if(plugin.FullName.Contains("Shape"))
-                {
-                    shapePlugins.Add(plugin);
-                    cbShapesType.Items.Add(plugin.Name);
-                }
-            }*/
-
-            plugins = loader.Load("SerializerPlugins");
-
-            foreach (var plugin in plugins)
-            {
-                if (plugin.FullName.Contains("Handler"))
-                {
-                    serializerHandlerPlugins.Add(plugin);
-                }
-                else if (plugin.FullName.Contains("Custom"))
-                {
-                    serializerPlugins.Add(plugin);
-                    cbSerializer.Items.Add(plugin.ToString().Split('.')[1]);
-                }
-            }
-
-            plugins = loader.LoadStrangePlugins();
-
-            foreach (var plugin in plugins)
-            {
-                strangePlugins.Add(plugin);
-            }
         }
 
         private void InitializeStaticShapes()
@@ -302,6 +262,57 @@ namespace GUI
         private void cbSerializer_SelectedIndexChanged(object sender, EventArgs e)
         {
             serializer = serializerCreator.GetSerializer(cbSerializer.Text);
+        }
+
+        private void lblWidth_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SetPluginLists(List<Type> plugins)
+        {
+            foreach (var plugin in plugins)
+            {
+                if (plugin.FullName.Contains("Handler"))
+                {
+                    shapeHandlerPlugins.Add(plugin);
+                }
+                else if (plugin.FullName.Contains("Shape"))
+                {
+                    shapePlugins.Add(plugin);
+                    cbShapesType.Items.Add(plugin.Name);
+                }
+                if (plugin.FullName.Contains("SerializerHandler"))
+                {
+                    serializerHandlerPlugins.Add(plugin);
+                }
+                else if (plugin.FullName.Contains("Custom"))
+                {
+                    serializerPlugins.Add(plugin);
+                    cbSerializer.Items.Add(plugin.ToString().Split('.')[1]);
+                }
+
+            }
+
+            shapeCreator = new ShapeCreator(cbShapesType.Text, shapePlugins, shapeHandlerPlugins);
+            serializerCreator = new SerializerCreator<Shape>(serializerPlugins, serializerHandlerPlugins);
+        }
+
+        private void btnPlugins_Click(object sender, EventArgs e)
+        {
+            using (var fbd = new FolderBrowserDialog())
+            {
+                DialogResult result = fbd.ShowDialog();
+
+                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
+                {
+                    loader = PluginLoader.GetInstance();
+                    plugins = loader.Load(fbd.SelectedPath);
+                    SetPluginLists(plugins);    
+
+                    MessageBox.Show("Selected plugins are now available", "Message");
+                }
+            }
         }
     }
 }
