@@ -33,17 +33,17 @@
 
         public void DrawLine(Pen pen, Point start, Point end)
         {
-            graphics.DrawLine(pen, start, end); 
+            Graphics.FromImage(pictureBox.Image).DrawLine(pen, start, end); 
         }
 
         public void DrawPolygon(Pen pen, List<Point> points)
         {
-            graphics.DrawPolygon(pen, points.ToArray());
+            Graphics.FromImage(pictureBox.Image).DrawPolygon(pen, points.ToArray());
         }
 
         public void DrawEllipse(Pen pen, Point start, int a, int b)
         {
-            graphics.DrawEllipse(pen, start.X, start.Y, a, b);
+            Graphics.FromImage(pictureBox.Image).DrawEllipse(pen, start.X, start.Y, a, b);
         }
 
     }

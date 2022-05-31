@@ -1,4 +1,5 @@
 ﻿using GUI.ShapeHandlers;
+using GUI.Patterns;
 
 namespace GUI
 {
@@ -15,6 +16,7 @@ namespace GUI
                 {"Circle", new CircleHandler() },
                 {"Ellipse", new EllipseHandler() },
                 {"Triangle", new TriangleHandler() },
+                {"Filled triangle", new FilledTriangleHandler() },
             };
 
             // add plugins here

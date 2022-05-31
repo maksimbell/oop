@@ -95,12 +95,12 @@
             "Rectangle",
             "Triangle",
             "Circle",
-            "Ellipse"});
+            "Ellipse",
+            "Filled triangle"});
             this.cbShapesType.Location = new System.Drawing.Point(8, 12);
             this.cbShapesType.Name = "cbShapesType";
             this.cbShapesType.Size = new System.Drawing.Size(194, 28);
             this.cbShapesType.TabIndex = 3;
-            this.cbShapesType.SelectedIndexChanged += new System.EventHandler(this.cbShapesType_SelectedIndexChanged);
             // 
             // lbShapes
             // 
@@ -195,7 +195,6 @@
             this.lblCurrentSerializer.Size = new System.Drawing.Size(120, 20);
             this.lblCurrentSerializer.TabIndex = 12;
             this.lblCurrentSerializer.Text = "Current method: ";
-            this.lblCurrentSerializer.Click += new System.EventHandler(this.lblCurrentSerializer_Click);
             // 
             // GraphicsForm
             // 
@@ -220,7 +219,6 @@
             this.MaximizeBox = false;
             this.Name = "GraphicsForm";
             this.Text = "graphics";
-            this.Load += new System.EventHandler(this.GraphicsForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.canvas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbWidth)).EndInit();
             this.ResumeLayout(false);

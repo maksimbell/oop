@@ -46,8 +46,9 @@ namespace GUI
 
             LoadPlugins();
             Graphics graphics = canvas.CreateGraphics();
+            canvas.Image = DrawFilledRectangle(canvas.Width, canvas.Height);
             sd = new ShapesDrawer(graphics, canvas);
-
+            
             shapeCreator = new ShapeCreator(cbShapesType.Text, shapePlugins, shapeHandlerPlugins);
             serializerCreator = new SerializerCreator<Shape>(serializerPlugins, serializerHandlerPlugins);
 
@@ -93,16 +94,6 @@ namespace GUI
             {
                 strangePlugins.Add(plugin);
             }
-
-            Type type = strangePlugins[0].GetType();
-            var obj = Activator.CreateInstance(strangePlugins[1]);
-
-            /*Figure f = new FilledTriangle.FilledTriangle();
-            f.Points = new List<Point>() { new Point(100, 250), new Point(100, 100), new Point(250, 250) };
-            f.Draw(sd.pictureBox.Image);*/
-
-            
-
         }
 
         private void InitializeStaticShapes()
@@ -124,6 +115,8 @@ namespace GUI
 
         private void DrawShapesCanvas()
         {
+            Refresh();
+            canvas.Image = DrawFilledRectangle(canvas.Width, canvas.Height);
             foreach (Shape shape in shapes)
             {
                 shape.Draw(sd);
@@ -136,7 +129,7 @@ namespace GUI
             {
                 shapes[index].Pen = (Pen)canvasPen.Clone();
                 shapes[index].Pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
-
+                
                 shapes[index].PenState.Color = canvasPen.Color;
                 shapes[index].PenState.RGB = canvasPen.Color.ToArgb();
                 shapes[index].PenState.Width = canvasPen.Width;
@@ -145,17 +138,14 @@ namespace GUI
 
         private void button1_Click(object sender, EventArgs e)
         {
+            Refresh();
+            canvas.Image = DrawFilledRectangle(canvas.Width, canvas.Height);
             foreach (var shape in staticShapes)
             {
                 shape.Draw(sd);
             }
 
             btnClear.Enabled = true;
-
-            Shape filledTriangle = new FilledTriangleAdapter(new List<Point>() {
-                new Point(100, 250), new Point(100, 100), new Point(250, 250) }, canvasPen);
-
-            filledTriangle.Draw(sd);
         }
 
         private void button1_Click_1(object sender, EventArgs e)
@@ -174,8 +164,6 @@ namespace GUI
                 shapes.Clear();
             }
 
-            //btnClear.Enabled = false;
-            Refresh();
             DrawShapesCanvas();
             selectedShapes.Clear();
         }
@@ -189,13 +177,22 @@ namespace GUI
         {
             //ShapeCreator = new SC()
         }
+        private Bitmap DrawFilledRectangle(int x, int y)
+        {
+            Bitmap bmp = new Bitmap(x, y);
+            using (Graphics graph = Graphics.FromImage(bmp))
+            {
+                Rectangle ImageSize = new Rectangle(0, 0, x, y);
+                graph.FillRectangle(Brushes.Transparent, ImageSize);
+            }
+            return bmp;
+        }
 
         private void canvas_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
                 currentShape.Resize(new Point(e.X, e.Y));
-                Refresh();
                 DrawShapesCanvas();
                 currentShape.Draw(sd);
             }
@@ -232,7 +229,6 @@ namespace GUI
             canvasPen.Color = shapesColorDialog.Color;
             ChangeSelectedShapes();
 
-            Refresh();
             DrawShapesCanvas();
         }
 
@@ -253,7 +249,6 @@ namespace GUI
 
             btnSave.Enabled = selectedShapes.Count == 1 ? true : false;
 
-            Refresh();
             DrawShapesCanvas();
         }
 
@@ -262,7 +257,6 @@ namespace GUI
             canvasPen.Width = tbWidth.Value;
             ChangeSelectedShapes();
 
-            Refresh();
             DrawShapesCanvas();
         }
 
@@ -271,7 +265,14 @@ namespace GUI
             if (openFileDialog.ShowDialog() == DialogResult.Cancel)
                 return;
 
-            serializer.Serialize(shapes[selectedShapes[0]], openFileDialog.FileName);
+            try
+            {
+                serializer.Serialize(shapes[selectedShapes[0]], openFileDialog.FileName);
+            }
+            catch (CustomBinarySerializerException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnLoad_Click(object sender, EventArgs e)
@@ -279,37 +280,28 @@ namespace GUI
             if (openFileDialog.ShowDialog() == DialogResult.Cancel)
                 return;
 
-            currentShape = serializer.Deserialize(openFileDialog.FileName);
+            try
+            {
+                currentShape = serializer.Deserialize(openFileDialog.FileName);
 
-            currentShape.Pen = new Pen(Color.FromArgb(currentShape.PenState.RGB));
-            currentShape.PenState.Color = currentShape.Pen.Color;
-            currentShape.Pen.Width = currentShape.PenState.Width;
+                currentShape.Pen = new Pen(Color.FromArgb(currentShape.PenState.RGB));
+                currentShape.PenState.Color = currentShape.Pen.Color;
+                currentShape.Pen.Width = currentShape.PenState.Width;
 
-            AddCurrentShape();
+                AddCurrentShape();
 
-            btnClear.Enabled = true;
-            Refresh();
-            DrawShapesCanvas();
-        }
-
-        private void cbShapesType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void GraphicsForm_Load(object sender, EventArgs e)
-        {
-            
+                btnClear.Enabled = true;
+                DrawShapesCanvas();
+            }
+            catch (CustomBinarySerializerException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void cbSerializer_SelectedIndexChanged(object sender, EventArgs e)
         {
             serializer = serializerCreator.GetSerializer(cbSerializer.Text);
-        }
-
-        private void lblCurrentSerializer_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

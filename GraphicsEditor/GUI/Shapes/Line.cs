@@ -28,6 +28,7 @@ namespace GUI.Drawer
 
         public override void Draw(ShapesDrawer sd)
         {
+            Image img = new Bitmap(100, 100);
             sd.DrawLine(Pen, StartPoint, endPoint);
         }
 
