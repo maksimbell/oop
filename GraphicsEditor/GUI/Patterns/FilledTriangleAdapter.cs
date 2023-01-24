@@ -13,7 +13,7 @@ namespace GUI.Patterns
     [Serializable]
     public class FilledTriangleAdapter : Shape
     {
-        [NonSerialized]
+        
         Figure figure;
         public FilledTriangleAdapter(List<Point> points, Pen pen)
         {

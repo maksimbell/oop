@@ -26,15 +26,15 @@ namespace GUI.Serializer
                 {
                     if (ex is ArgumentException)
                     {
-                        throw new CustomBinarySerializerException();
+                        throw new CustomSerializerException();
                     }
                     if (ex is SerializationException)
                     {
-                        throw new CustomBinarySerializerException();
+                        throw new CustomSerializerException();
                     }
                     if (ex is SecurityException)
                     {
-                        throw new CustomBinarySerializerException();
+                        throw new CustomSerializerException();
                     }
                     throw;
                 }
@@ -54,15 +54,15 @@ namespace GUI.Serializer
                 {
                     if(ex is ArgumentException)
                     {
-                        throw new CustomBinarySerializerException(); 
+                        throw new CustomSerializerException(); 
                     }
                     if (ex is SerializationException)
                     {
-                        throw new CustomBinarySerializerException();
+                        throw new CustomSerializerException();
                     }
                     if (ex is SecurityException)
                     {
-                        throw new CustomBinarySerializerException(); 
+                        throw new CustomSerializerException(); 
                     }
                     throw;
                 }

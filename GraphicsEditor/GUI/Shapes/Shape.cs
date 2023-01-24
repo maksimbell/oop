@@ -1,6 +1,7 @@
 ﻿using System.Drawing;
 using System.Xml.Serialization;
 using GUI;
+using GUI.Drawer;
 
 namespace GUI.Drawer
 {
@@ -9,7 +10,7 @@ namespace GUI.Drawer
         XmlInclude(typeof(Ellipse)), XmlInclude(typeof(Triangle)), XmlInclude(typeof(Square)), 
         XmlInclude(typeof(ShapePlugins.Rhombus)), XmlInclude(typeof(ShapePlugins.RightTriangle))]
     [Serializable]
-    public abstract class Shape: IDrawable, IResizeable
+    public abstract class Shape: IDrawable, IResizeable, IClownable
     {
         private Point startPoint;
 
